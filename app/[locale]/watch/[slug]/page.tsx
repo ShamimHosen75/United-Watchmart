@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
+import { AddToCart } from "@/components/cart/AddToCart";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { WatchCard } from "@/components/ui/WatchCard";
@@ -82,9 +83,10 @@ export default async function WatchPage({ params }: Props) {
             {t("watch.ref")} <span dir="ltr">{watch.ref}</span>
           </p>
           <p className="mt-8 max-w-md text-20 text-ivory/80">{watch.tagline}</p>
-          <div className="mt-10 flex flex-wrap items-center gap-6">
-            <p className="tabular font-serif text-40 text-gold-light">{formatPrice(watch.priceUsd, locale)}</p>
-            <ButtonLink href={{ pathname: "/", query: { watch: watch.slug }, hash: "visit" }}>
+          <p className="tabular mt-10 font-serif text-40 text-gold-light">{formatPrice(watch.priceUsd)}</p>
+          <div className="mt-6 flex flex-wrap items-start gap-4">
+            <AddToCart slug={watch.slug} />
+            <ButtonLink variant="outline" href={{ pathname: "/", query: { watch: watch.slug }, hash: "visit" }}>
               {t("common.requestViewing")}
             </ButtonLink>
           </div>
@@ -134,7 +136,7 @@ export default async function WatchPage({ params }: Props) {
         <ul className="mt-12 grid gap-x-6 gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
           {others.map((w) => (
             <li key={w.slug} data-reveal>
-              <WatchCard watch={w} locale={locale} />
+              <WatchCard watch={w} />
             </li>
           ))}
         </ul>

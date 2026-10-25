@@ -17,14 +17,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function HomePage({ params }: Props) {
-  const locale = await resolveLocale(params);
+  await resolveLocale(params);
 
   return (
     <>
       <Hero />
       <Disassembly />
       <SpecsStrip />
-      <CollectionTeaser locale={locale} />
+      <CollectionTeaser />
       <VisitSection />
     </>
   );

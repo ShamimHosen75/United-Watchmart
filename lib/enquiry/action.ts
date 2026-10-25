@@ -2,16 +2,14 @@
 
 import { headers } from "next/headers";
 import { sendEnquiryEmails } from "./email";
-import { takeToken } from "./rate-limit";
+import { clientIp, enquiryLimiter } from "@/lib/rate-limit";
 import { enquiryRequestSchema, type EnquiryField, type EnquiryResult } from "./schema";
 import { verifyTurnstile } from "./turnstile";
 
 /** Handles a "Request a viewing" submission. Never throws; always returns a typed result. */
 export async function submitEnquiry(input: unknown): Promise<EnquiryResult> {
-  const h = await headers();
-  const ip = h.get("x-forwarded-for")?.split(",")[0]?.trim() || h.get("x-real-ip") || "unknown";
-
-  if (!takeToken(ip)) return { ok: false, error: "rate" };
+  const ip = clientIp(await headers());
+  if (!enquiryLimiter(ip)) return { ok: false, error: "rate" };
 
   const parsed = enquiryRequestSchema.safeParse(input);
   if (!parsed.success) {

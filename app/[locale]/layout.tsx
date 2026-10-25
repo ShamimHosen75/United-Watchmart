@@ -2,6 +2,7 @@ import "../globals.css";
 import type { Metadata, Viewport } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getTranslations } from "next-intl/server";
+import { CartDrawer } from "@/components/cart/CartDrawer";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
@@ -67,6 +68,7 @@ export default async function LocaleLayout({ children, params }: Props) {
             {children}
           </main>
           <Footer />
+          <CartDrawer />
         </NextIntlClientProvider>
       </body>
     </html>

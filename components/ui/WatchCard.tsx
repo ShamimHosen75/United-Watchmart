@@ -1,12 +1,11 @@
 import type { Watch } from "@/data/products";
-import type { Locale } from "@/i18n/routing";
 import { Link } from "@/i18n/navigation";
 import { formatPrice } from "@/lib/format";
 import { WatchVisual } from "./WatchVisual";
 
-type Props = { watch: Watch; locale: Locale; className?: string; headingLevel?: "h2" | "h3" };
+type Props = { watch: Watch; className?: string; headingLevel?: "h2" | "h3" };
 
-export function WatchCard({ watch, locale, className = "", headingLevel: Heading = "h3" }: Props) {
+export function WatchCard({ watch, className = "", headingLevel: Heading = "h3" }: Props) {
   return (
     <Link
       href={`/watch/${watch.slug}`}
@@ -30,7 +29,7 @@ export function WatchCard({ watch, locale, className = "", headingLevel: Heading
           <Heading className="text-28 text-ivory">{watch.name}</Heading>
           <p className="label mt-1 text-muted tabular">{watch.ref}</p>
         </div>
-        <p className="tabular pt-1 text-20 text-gold-light">{formatPrice(watch.priceUsd, locale)}</p>
+        <p className="tabular pt-1 text-20 text-gold-light">{formatPrice(watch.priceUsd)}</p>
       </div>
       <span
         aria-hidden

@@ -21,7 +21,7 @@ export default async function CollectionPage({ params }: Props) {
   const items = localizedProducts(locale).map((w) => ({
     slug: w.slug,
     strap: w.strap,
-    card: <WatchCard watch={w} locale={locale} headingLevel="h2" />,
+    card: <WatchCard watch={w} headingLevel="h2" />,
   }));
 
   return (

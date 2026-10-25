@@ -17,3 +17,6 @@ next-env.d.ts
 *.pem
 npm-debug.log*
 .vercel
+
+# local embedded database (PGlite)
+/.data/

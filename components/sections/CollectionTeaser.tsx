@@ -4,10 +4,9 @@ import { ButtonLink } from "@/components/ui/ButtonLink";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { WatchCard } from "@/components/ui/WatchCard";
 import { products } from "@/data/products";
-import type { Locale } from "@/i18n/routing";
 
 /** Native horizontal scroll on phones; pinned and scroll-driven from 768 px up. */
-export async function CollectionTeaser({ locale }: { locale: Locale }) {
+export async function CollectionTeaser() {
   const t = await getTranslations();
 
   return (
@@ -30,7 +29,7 @@ export async function CollectionTeaser({ locale }: { locale: Locale }) {
       <HorizontalScroll className="mt-14 flex snap-x snap-mandatory gap-6 overflow-x-auto px-[max(var(--gutter),calc((100vw-var(--max-w))/2+var(--gutter)))] pb-6 [scrollbar-width:thin] data-pinned:snap-none data-pinned:overflow-visible">
         {products.map((w) => (
           <li key={w.slug} data-reveal className="w-[78vw] shrink-0 snap-start sm:w-[44vw] lg:w-[24vw]">
-            <WatchCard watch={w} locale={locale} />
+            <WatchCard watch={w} />
           </li>
         ))}
       </HorizontalScroll>

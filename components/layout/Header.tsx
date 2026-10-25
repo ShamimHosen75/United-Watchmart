@@ -3,6 +3,7 @@
 import { useCallback, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
+import { CartButton } from "@/components/cart/CartButton";
 import { Brand } from "./Brand";
 import { LanguageSwitch } from "./LanguageSwitch";
 import { Menu } from "./Menu";
@@ -48,6 +49,7 @@ export function Header() {
           <Brand />
           <div className="flex items-center gap-4 lg:gap-8">
             <LanguageSwitch className="hidden sm:flex" />
+            <CartButton />
             <button
               ref={buttonRef}
               type="button"
