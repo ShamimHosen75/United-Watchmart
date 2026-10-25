@@ -1,0 +1,9 @@
+# Keep LF line endings in the repo (Vercel builds on Linux)
+* text=auto eol=lf
+
+*.wasm binary
+*.png binary
+*.jpg binary
+*.webp binary
+*.glb binary
+*.woff2 binary

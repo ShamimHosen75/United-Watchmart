@@ -1,0 +1,259 @@
+{
+  "meta": {
+    "siteName": "United WatchMart",
+    "title": "United WatchMart — Automatic watches, taken apart",
+    "description": "Nine automatic watches in steel, gold and ceramic, assembled by hand. Explore the collection, see how a watch is built, and request a private viewing."
+  },
+  "a11y": {
+    "skip": "Skip to content",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "language": "Language",
+    "mainNav": "Main navigation",
+    "footerNav": "Footer navigation",
+    "breadcrumb": "Breadcrumb"
+  },
+  "nav": {
+    "home": "Home",
+    "anatomy": "Anatomy",
+    "collection": "Collection",
+    "pricing": "Pricing",
+    "about": "About",
+    "legal": "Legal",
+    "visit": "Request a viewing"
+  },
+  "header": {
+    "menu": "Menu",
+    "close": "Close"
+  },
+  "menu": {
+    "explore": "Explore",
+    "watches": "The collection",
+    "viewings": "Private viewings by appointment"
+  },
+  "footer": {
+    "tagline": "Automatic watches, assembled by hand and explained piece by piece.",
+    "explore": "Explore",
+    "house": "The house",
+    "newsletterTitle": "Letters from the workshop",
+    "newsletterBody": "New references and workshop notes, a few times a year.",
+    "newsletterLabel": "Email address",
+    "newsletterPlaceholder": "you@example.com",
+    "subscribe": "Subscribe",
+    "subscribed": "Thank you. You are on the list.",
+    "rights": "All rights reserved."
+  },
+  "common": {
+    "viewWatch": "View watch",
+    "viewCollection": "View the collection",
+    "requestViewing": "Request a viewing",
+    "strap": {
+      "bracelet": "Bracelet",
+      "leather": "Leather",
+      "rubber": "Rubber"
+    }
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Automatic watchmaking",
+      "title": "Time, taken apart.",
+      "intro": "Nine automatic watches in steel, gold and ceramic. Scroll to see what sits beneath the crystal, one layer at a time.",
+      "cue": "Scroll to disassemble"
+    },
+    "stage": {
+      "label": "Heritage 42 · Disassembled",
+      "title": "Seven layers, one heartbeat.",
+      "steps": {
+        "crystal": {
+          "title": "Sapphire crystal",
+          "body": "Domed, coated on the inside against glare, and hard enough that only diamond will scratch it."
+        },
+        "bezel": {
+          "title": "18k gold bezel",
+          "body": "Turned from a solid gold ring and polished by hand to a mirror finish."
+        },
+        "hands": {
+          "title": "Hands",
+          "body": "Faceted, filled with luminous material and balanced so they sweep evenly."
+        },
+        "dial": {
+          "title": "Sunburst dial",
+          "body": "Brushed in radiating lines, so the navy shifts as light moves across it."
+        },
+        "movement": {
+          "title": "Automatic movement",
+          "body": "28,800 beats an hour, wound by the motion of your wrist."
+        },
+        "caseback": {
+          "title": "Case back",
+          "body": "Screwed down and sealed to 100 metres, with a sapphire window onto the rotor."
+        },
+        "bracelet": {
+          "title": "Bracelet",
+          "body": "Solid links in steel and gold, joined by screws rather than pins."
+        }
+      }
+    },
+    "specs": {
+      "label": "Heritage 42 in numbers",
+      "case": "Case diameter",
+      "beat": "Vibrations per hour",
+      "water": "Water resistance",
+      "reserve": "Power reserve",
+      "mm": "mm",
+      "vph": "vph",
+      "m": "m",
+      "h": "h"
+    },
+    "teaser": {
+      "label": "The collection",
+      "title": "Nine watches, one standard.",
+      "body": "From the steel and gold Heritage 42 to the hand-cut Blue Tourbillon."
+    },
+    "visit": {
+      "label": "Private viewings",
+      "title": "See it on your wrist.",
+      "body": "Choose a watch and a date. A specialist will confirm your appointment within one working day and have the piece ready when you arrive."
+    }
+  },
+  "anatomy": {
+    "metaTitle": "Anatomy of a watch",
+    "metaDescription": "Six chapters on how an automatic watch works and how each part is made: crystal, bezel, dial and hands, movement, case and bracelet.",
+    "label": "Anatomy",
+    "title": "Anatomy of a watch.",
+    "intro": "An automatic watch is a few hundred parts that never stop moving. Here are the six that matter most, what each one does, and how it is made.",
+    "chapter": "Chapter",
+    "does": "What it does",
+    "made": "How it is made",
+    "progress": "Chapter progress",
+    "goTo": "Go to chapter {n}: {title}"
+  },
+  "collection": {
+    "metaTitle": "The collection",
+    "metaDescription": "Nine automatic watches on bracelet, leather and rubber, from the Heritage 42 to the Blue Tourbillon.",
+    "label": "The collection",
+    "title": "Nine automatic watches.",
+    "intro": "Every watch is assembled and regulated by hand, and every one runs on its own automatic movement.",
+    "filterLabel": "Filter by strap",
+    "all": "All",
+    "count": "{count, plural, one {# watch} other {# watches}}"
+  },
+  "pricing": {
+    "metaTitle": "Pricing",
+    "metaDescription": "Prices for every United WatchMart watch, in US dollars.",
+    "label": "Pricing",
+    "title": "Clear prices, no surprises.",
+    "intro": "Every price includes a five-year warranty, a fitted bracelet or strap, and the presentation box.",
+    "caption": "United WatchMart watches and prices in US dollars",
+    "name": "Watch",
+    "ref": "Reference",
+    "price": "Price",
+    "link": "Details",
+    "note": "Prices in US dollars, excluding local taxes and duties.",
+    "ctaTitle": "Prefer to see it first?",
+    "ctaBody": "Book a private viewing and try any watch on before you decide."
+  },
+  "about": {
+    "metaTitle": "About",
+    "metaDescription": "United WatchMart builds automatic watches by hand and explains every part that goes into them.",
+    "label": "About",
+    "title": "We make watches you can understand.",
+    "intro": "United WatchMart began with a simple idea: a fine watch should not be a mystery. You should know what is inside it, how it was made and why it costs what it does.",
+    "s1Title": "Built by hand",
+    "s1Body": "Each watch is assembled, regulated and tested by one watchmaker from start to finish. Their initials are recorded against the serial number, so every piece has a name behind it.",
+    "s2Title": "Explained in full",
+    "s2Body": "We publish what goes into every reference: the case material, the movement, the reserve, the finishing. Our Anatomy pages take a watch apart so you can see it for yourself.",
+    "s3Title": "Made to be serviced",
+    "s3Body": "Bracelets are joined with screws, movements are built to be opened, and spare parts are kept for decades. A good watch should outlive the person who first buys it.",
+    "s4Title": "Seen in person",
+    "s4Body": "We would rather you try a watch on than buy it from a photograph. Private viewings are free, unhurried and without obligation."
+  },
+  "legal": {
+    "metaTitle": "Privacy and terms",
+    "metaDescription": "How United WatchMart handles your data and the terms that apply to this website.",
+    "label": "Legal",
+    "title": "Privacy and terms.",
+    "updated": "Last updated",
+    "privacyTitle": "Privacy",
+    "privacy1": "We collect only what you give us: your name, email, phone number and message when you request a viewing, and your email if you join our newsletter.",
+    "privacy2": "We use these details to answer your enquiry and arrange your appointment. We do not sell or rent your data, and we share it only with the services that deliver our email and protect our forms from spam.",
+    "privacy3": "You can ask us to see, correct or delete your data at any time by replying to any email we send you.",
+    "termsTitle": "Terms",
+    "terms1": "Prices and specifications on this site are shown for information and may change without notice. A purchase is confirmed only when you receive a written order confirmation.",
+    "terms2": "All text, images, models and designs on this site belong to United WatchMart and may not be reused without permission.",
+    "terms3": "Viewings are free and place you under no obligation to buy."
+  },
+  "watch": {
+    "ref": "Reference",
+    "story": "The story",
+    "specs": "Specifications",
+    "price": "Price",
+    "others": "More from the collection",
+    "prev": "Previous",
+    "next": "Next",
+    "caseMm": "Case diameter",
+    "caseMaterial": "Case",
+    "bezel": "Bezel",
+    "dial": "Dial",
+    "movement": "Movement",
+    "powerReserveH": "Power reserve",
+    "strapDetail": "Strap",
+    "waterM": "Water resistance",
+    "hours": "{value} hours",
+    "metres": "{value} m",
+    "mm": "{value} mm",
+    "gallery": "Gallery",
+    "angleFront": "Front",
+    "angleSide": "Three-quarter",
+    "view3d": "View in 3D",
+    "viewPhotos": "Back to photos",
+    "loading3d": "Loading 3D model…",
+    "dragHint": "Drag to rotate, scroll or pinch to zoom",
+    "showAngle": "Show {angle} view"
+  },
+  "notFound": {
+    "label": "404",
+    "title": "This page has stopped.",
+    "body": "The page you are looking for has moved or never existed.",
+    "cta": "Back to home"
+  },
+  "form": {
+    "name": "Full name",
+    "email": "Email",
+    "phone": "Phone (optional)",
+    "watch": "Watch",
+    "watchPlaceholder": "Choose a watch",
+    "date": "Preferred date",
+    "message": "Message (optional)",
+    "messagePlaceholder": "Anything we should prepare for your visit?",
+    "honeypot": "Leave this field empty",
+    "submit": "Request a viewing",
+    "sending": "Sending…",
+    "captchaLoading": "Loading security check…",
+    "privacy": "We use these details only to arrange your viewing.",
+    "successTitle": "Thank you, {name}.",
+    "successBody": "Your request is with our boutique. We have sent a confirmation to {email} and will confirm your appointment within one working day.",
+    "again": "Send another request",
+    "errors": {
+      "nameShort": "Please enter your full name.",
+      "email": "Please enter a valid email address.",
+      "phone": "Use digits, spaces and + ( ) - only.",
+      "watch": "Please choose a watch.",
+      "date": "Please choose a date.",
+      "dateRange": "Choose a date from today up to a year ahead.",
+      "tooLong": "This is too long.",
+      "spam": "Please leave this field empty.",
+      "captcha": "Please complete the security check.",
+      "rate": "Too many requests from your connection. Please try again in an hour.",
+      "server": "We could not send your request. Your details are still here, so please try again.",
+      "invalid": "Please check the highlighted fields."
+    }
+  },
+  "email": {
+    "subject": "Your viewing request at United WatchMart",
+    "title": "Thank you, {name}.",
+    "intro": "We have received your request for a private viewing. A specialist will confirm your appointment within one working day.",
+    "watch": "Watch",
+    "date": "Preferred date"
+  }
+}

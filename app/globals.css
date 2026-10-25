@@ -1,0 +1,254 @@
+@import "tailwindcss";
+@import "lenis/dist/lenis.css";
+
+/* ------------------------------------------------------------------ */
+/* Design tokens                                                        */
+/* ------------------------------------------------------------------ */
+:root {
+  color-scheme: dark;
+
+  --bg: #0e0803;
+  --surface: #1a120a;
+  --surface-2: #231810;
+  --ivory: #efe6d6;
+  --muted: #a8997f;
+  --gold: #c9a35c;
+  --gold-light: #e6c88a;
+  --hairline: rgba(201, 163, 92, 0.2);
+
+  /* Fluid type scale: 14 / 16 / 20 / 28 / 40 / 64 / 96 */
+  --fs-14: 0.875rem;
+  --fs-16: 1rem;
+  --fs-20: clamp(1.0625rem, 0.98rem + 0.35vw, 1.25rem);
+  --fs-28: clamp(1.375rem, 1.18rem + 0.8vw, 1.75rem);
+  --fs-40: clamp(1.75rem, 1.35rem + 1.7vw, 2.5rem);
+  --fs-64: clamp(2.5rem, 1.7rem + 3.4vw, 4rem);
+  --fs-96: clamp(3rem, 1.6rem + 6vw, 6rem);
+
+  --gutter: 1.5rem;
+  --max-w: 1440px;
+  --header-h: 4.5rem;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --serif: var(--font-display), Georgia, serif;
+  --sans: var(--font-body), system-ui, sans-serif;
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --gutter: 3rem;
+    --header-h: 5.5rem;
+  }
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ivory: var(--ivory);
+  --color-muted: var(--muted);
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-hairline: var(--hairline);
+
+  --font-serif: var(--serif);
+  --font-sans: var(--sans);
+  /* The Latin wordmark keeps Cormorant in both languages */
+  --font-brand: var(--font-display), Georgia, serif;
+
+  --text-14: var(--fs-14);
+  --text-16: var(--fs-16);
+  --text-20: var(--fs-20);
+  --text-28: var(--fs-28);
+  --text-40: var(--fs-40);
+  --text-64: var(--fs-64);
+  --text-96: var(--fs-96);
+
+  --ease-out-expo: var(--ease-out);
+}
+
+/* Arabic: swap both families to Noto Naskh Arabic */
+:root[dir="rtl"] {
+  --serif: var(--font-arabic), serif;
+  --sans: var(--font-arabic), system-ui, sans-serif;
+}
+
+/* ------------------------------------------------------------------ */
+/* Base                                                                 */
+/* ------------------------------------------------------------------ */
+@layer base {
+  html {
+    background: var(--bg);
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--ivory);
+    font-family: var(--sans);
+    font-size: var(--fs-16);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--serif);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+
+  :root[dir="rtl"] h1,
+  :root[dir="rtl"] h2,
+  :root[dir="rtl"] h3,
+  :root[dir="rtl"] h4 {
+    line-height: 1.35;
+    letter-spacing: 0;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--gold);
+    color: var(--bg);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--gold-light);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  a,
+  button {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Utilities                                                            */
+/* ------------------------------------------------------------------ */
+@utility container-site {
+  width: 100%;
+  max-width: var(--max-w);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+@utility grid-12 {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: 1.5rem;
+}
+
+@utility label {
+  font-family: var(--sans);
+  font-size: var(--fs-14);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+@utility hairline-t {
+  border-top: 1px solid var(--hairline);
+}
+
+@utility hairline-b {
+  border-bottom: 1px solid var(--hairline);
+}
+
+@utility gold-text {
+  background: linear-gradient(100deg, var(--gold) 0%, var(--gold-light) 45%, var(--gold) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Arabic does not use letter-spacing or uppercase */
+:root[dir="rtl"] .label {
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* Skip link */
+.skip-link {
+  position: fixed;
+  inset-inline-start: 1rem;
+  top: 1rem;
+  z-index: 100;
+  transform: translateY(-200%);
+  background: var(--gold);
+  color: var(--bg);
+  padding: 0.75rem 1.25rem;
+}
+.skip-link:focus {
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Motion shell                                                         */
+/* ------------------------------------------------------------------ */
+
+/* Preloader: shown only on the first visit of a session (head script adds is-loading) */
+html.is-loading {
+  overflow: hidden;
+}
+html.is-loading .preloader {
+  display: flex;
+}
+
+/* Reveal: hidden only once JS is confirmed running, so content shows without it */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(40px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal] {
+    transform: none;
+  }
+}
+
+/* Custom cursor (fine pointers only, added by components/motion/Cursor) */
+.has-cursor,
+.has-cursor * {
+  cursor: none;
+}
+.has-cursor :is(input, textarea, select, [contenteditable]) {
+  cursor: auto;
+}
+
+/* Hero scroll cue: a short gold line running down its track */
+@keyframes scroll-cue {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(200%);
+  }
+}
