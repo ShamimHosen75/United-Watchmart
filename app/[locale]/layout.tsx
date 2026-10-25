@@ -16,6 +16,7 @@ import { dirOf, routing } from "@/i18n/routing";
 import { fontVariables } from "@/lib/fonts";
 import { headScript } from "@/lib/page-state";
 import { siteUrl } from "@/lib/seo";
+import { shopEnabled } from "@/lib/shop/config";
 
 type Props = { children: React.ReactNode; params: Promise<{ locale: string }> };
 
@@ -68,7 +69,7 @@ export default async function LocaleLayout({ children, params }: Props) {
             {children}
           </main>
           <Footer />
-          <CartDrawer />
+          {shopEnabled && <CartDrawer />}
         </NextIntlClientProvider>
       </body>
     </html>

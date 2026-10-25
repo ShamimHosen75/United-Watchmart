@@ -11,6 +11,8 @@ import { getOrderItems } from "@/lib/shop/orders";
 import { recordSucceededPayment } from "@/lib/shop/payments";
 import { formatCents } from "@/lib/format";
 import { getStripe } from "@/lib/stripe/server";
+import { shopEnabled } from "@/lib/shop/config";
+import { notFound } from "next/navigation";
 
 export const dynamic = "force-dynamic";
 
@@ -29,6 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 /** Stripe redirects here after payment. Confirms the order even if the webhook has not arrived yet. */
 export default async function CompletePage({ params, searchParams }: Props) {
   await resolveLocale(params);
+  if (!shopEnabled) notFound();
   const { payment_intent: piId, ref } = await searchParams;
   const t = await getTranslations("order");
   const stripe = getStripe();

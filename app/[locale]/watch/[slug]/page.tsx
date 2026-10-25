@@ -13,6 +13,7 @@ import { resolveLocale } from "@/i18n/locale";
 import { routing } from "@/i18n/routing";
 import { formatNumber, formatPrice } from "@/lib/format";
 import { jsonLdString, pageMetadata, productJsonLd } from "@/lib/seo";
+import { shopEnabled } from "@/lib/shop/config";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
@@ -85,8 +86,8 @@ export default async function WatchPage({ params }: Props) {
           <p className="mt-8 max-w-md text-20 text-ivory/80">{watch.tagline}</p>
           <p className="tabular mt-10 font-serif text-40 text-gold-light">{formatPrice(watch.priceUsd)}</p>
           <div className="mt-6 flex flex-wrap items-start gap-4">
-            <AddToCart slug={watch.slug} />
-            <ButtonLink variant="outline" href={{ pathname: "/", query: { watch: watch.slug }, hash: "visit" }}>
+            {shopEnabled && <AddToCart slug={watch.slug} />}
+            <ButtonLink variant={shopEnabled ? "outline" : "solid"} href={{ pathname: "/", query: { watch: watch.slug }, hash: "visit" }}>
               {t("common.requestViewing")}
             </ButtonLink>
           </div>

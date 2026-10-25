@@ -12,3 +12,9 @@ export const shop = {
 } as const;
 
 export const toCents = (usd: number) => Math.round(usd * 100);
+
+/**
+ * Online buying (cart, add to cart, checkout) only appears when a Stripe publishable key is set.
+ * Without it the site is viewing-request only. Read at build time, so redeploy after adding the key.
+ */
+export const shopEnabled = Boolean(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
