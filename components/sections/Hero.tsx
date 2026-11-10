@@ -1,20 +1,19 @@
 import { getTranslations } from "next-intl/server";
 import { HeroTitle } from "@/components/motion/HeroTitle";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { WatchVisual } from "@/components/ui/WatchVisual";
+import { HeroWatch } from "./HeroWatch";
 
 export async function Hero() {
   const t = await getTranslations("home.hero");
 
   return (
-    <section className="relative flex min-h-svh items-end overflow-hidden pb-16 pt-[calc(var(--header-h)+2rem)] lg:items-center lg:pb-0">
-      <WatchVisual
-        slug="heritage-42"
+    <section className="relative flex min-h-svh flex-col overflow-hidden pb-16 pt-[var(--header-h)] lg:flex-row lg:items-center lg:pb-0 lg:pt-[calc(var(--header-h)+2rem)]">
+      {/* Phones: the watch sits above the headline. Desktop: it fills the right half behind the grid. */}
+      <HeroWatch
         label="Heritage 42"
-        decorative
-        className="absolute inset-y-0 end-0 w-full opacity-20 lg:w-[55%] lg:opacity-100"
+        className="relative h-[42svh] min-h-64 w-full shrink-0 lg:absolute lg:inset-y-0 lg:end-0 lg:h-auto lg:w-[55%]"
       />
-      <div className="container-site relative grid-12">
+      <div className="container-site relative grid-12 mt-8 lg:mt-0">
         <div className="col-span-12 lg:col-span-6">
           <div data-hero-fade>
             <SectionLabel>{t("eyebrow")}</SectionLabel>
