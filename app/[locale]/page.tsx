@@ -4,11 +4,15 @@ import { CollectionTeaser } from "@/components/sections/CollectionTeaser";
 import { Disassembly } from "@/components/sections/Disassembly";
 import { Hero } from "@/components/sections/Hero";
 import { SpecsStrip } from "@/components/sections/SpecsStrip";
+import { Testimonials } from "@/components/sections/Testimonials";
 import { VisitSection } from "@/components/sections/VisitSection";
 import { resolveLocale } from "@/i18n/locale";
 import { pageMetadata } from "@/lib/seo";
 
 type Props = { params: Promise<{ locale: string }> };
+
+// Re-read approved reviews from the database at most once an hour.
+export const revalidate = 3600;
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = await resolveLocale(params);
@@ -25,6 +29,7 @@ export default async function HomePage({ params }: Props) {
       <Disassembly />
       <SpecsStrip />
       <CollectionTeaser />
+      <Testimonials />
       <VisitSection />
     </>
   );

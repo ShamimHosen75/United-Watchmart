@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { AddToCart } from "@/components/cart/AddToCart";
+import { Stars } from "@/components/reviews/Stars";
+import { WatchReviews } from "@/components/reviews/WatchReviews";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { WatchCard } from "@/components/ui/WatchCard";
@@ -12,12 +14,15 @@ import { Link } from "@/i18n/navigation";
 import { resolveLocale } from "@/i18n/locale";
 import { routing } from "@/i18n/routing";
 import { formatNumber, formatPrice } from "@/lib/format";
+import { getWatchReviews } from "@/lib/reviews";
 import { jsonLdString, pageMetadata, productJsonLd } from "@/lib/seo";
 import { shopEnabled } from "@/lib/shop/config";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
 export const dynamicParams = false;
+// Re-read approved reviews from the database at most once an hour.
+export const revalidate = 3600;
 
 export function generateStaticParams() {
   return routing.locales.flatMap((locale) => products.map((w) => ({ locale, slug: w.slug })));
@@ -48,6 +53,7 @@ export default async function WatchPage({ params }: Props) {
   const { prev, next } = getAdjacent(watch.slug);
   const others = products.filter((w) => w.slug !== watch.slug).slice(0, 3);
   const n = (v: number) => formatNumber(v, locale);
+  const { summary: rating } = await getWatchReviews(watch.slug, locale);
 
   const specs: { key: keyof Watch["specs"]; value: string }[] = [
     { key: "caseMm", value: t("watch.mm", { value: n(watch.specs.caseMm) }) },
@@ -84,6 +90,14 @@ export default async function WatchPage({ params }: Props) {
             {t("watch.ref")} <span dir="ltr">{watch.ref}</span>
           </p>
           <p className="mt-8 max-w-md text-20 text-ivory/80">{watch.tagline}</p>
+          {rating.count > 0 && (
+            <a href="#reviews" className="group mt-6 inline-flex w-fit items-center gap-3">
+              <Stars rating={rating.average} label={t("reviews.rated", { rating: formatNumber(rating.average, locale, 1) })} />
+              <span className="label tabular text-muted group-hover:text-ivory">
+                {formatNumber(rating.average, locale, 1)} · {t("reviews.reviewsLink", { count: rating.count })}
+              </span>
+            </a>
+          )}
           <p className="tabular mt-10 font-serif text-40 text-ivory">{formatPrice(watch.priceUsd)}</p>
           <div className="mt-6 flex flex-wrap items-start gap-4">
             {shopEnabled && <AddToCart slug={watch.slug} />}
@@ -129,6 +143,8 @@ export default async function WatchPage({ params }: Props) {
           </dl>
         </div>
       </section>
+
+      <WatchReviews slug={watch.slug} name={watch.name} locale={locale} />
 
       <section aria-labelledby="others-title" className="container-site mt-24 lg:mt-40">
         <h2 id="others-title" data-reveal className="text-40">
