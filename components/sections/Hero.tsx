@@ -12,7 +12,7 @@ export async function Hero() {
         slug="heritage-42"
         label="Heritage 42"
         decorative
-        className="absolute inset-y-0 end-0 w-full opacity-40 lg:w-[55%] lg:opacity-100"
+        className="absolute inset-y-0 end-0 w-full opacity-20 lg:w-[55%] lg:opacity-100"
       />
       <div className="container-site relative grid-12">
         <div className="col-span-12 lg:col-span-6">

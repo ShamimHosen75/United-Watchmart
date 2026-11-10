@@ -24,7 +24,7 @@ export function CartButton() {
       </svg>
       <span className="hidden sm:inline">{t("label")}</span>
       {count > 0 && (
-        <span className="tabular grid min-w-5 place-items-center rounded-full bg-gold px-1.5 text-[11px] leading-5 tracking-normal text-bg">
+        <span className="tabular grid min-w-5 place-items-center rounded-full bg-ivory px-1.5 text-[11px] leading-5 tracking-normal text-bg">
           {count}
         </span>
       )}

@@ -10,7 +10,7 @@ export function NewsletterForm() {
 
   if (done) {
     return (
-      <p role="status" className="text-gold-light">
+      <p role="status" className="text-gold">
         {t("subscribed")}
       </p>
     );

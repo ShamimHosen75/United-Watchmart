@@ -69,7 +69,7 @@ export function CheckoutView({ locale }: Props) {
     <div className="container-site grid-12 gap-y-12">
       <div className="col-span-12 lg:col-span-7">
         {notice && (
-          <p role="status" className="mb-8 border border-gold/40 p-4 text-gold-light">
+          <p role="status" className="mb-8 border border-gold/40 p-4 text-gold">
             {notice}
           </p>
         )}
@@ -104,7 +104,7 @@ export function CheckoutView({ locale }: Props) {
                     {i.ref} · ×{i.quantity}
                   </p>
                 </div>
-                <p className="tabular text-gold-light">{formatCents(i.unitPriceCents * i.quantity)}</p>
+                <p className="tabular text-ivory">{formatCents(i.unitPriceCents * i.quantity)}</p>
               </li>
             ))}
           </ul>
@@ -116,7 +116,7 @@ export function CheckoutView({ locale }: Props) {
               </div>
               <div className="flex items-baseline justify-between pt-4 hairline-t">
                 <dt className="label text-muted">{t("total")}</dt>
-                <dd className="tabular font-serif text-40 text-gold-light">{formatCents(ready.totalCents)}</dd>
+                <dd className="tabular font-serif text-40 text-ivory">{formatCents(ready.totalCents)}</dd>
               </div>
             </dl>
           )}

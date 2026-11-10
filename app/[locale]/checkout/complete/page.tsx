@@ -81,13 +81,13 @@ export default async function CompletePage({ params, searchParams }: Props) {
                 <span dir="ltr">
                   {i.name} · {i.ref} × {i.quantity}
                 </span>
-                <span className="tabular text-gold-light">{formatCents(i.unitPriceCents * i.quantity)}</span>
+                <span className="tabular text-ivory">{formatCents(i.unitPriceCents * i.quantity)}</span>
               </li>
             ))}
           </ul>
           <p className="mt-4 flex justify-between">
             <span className="label text-muted">{t("total")}</span>
-            <span className="tabular font-serif text-28 text-gold-light">{formatCents(order.totalCents)}</span>
+            <span className="tabular font-serif text-28 text-ivory">{formatCents(order.totalCents)}</span>
           </p>
         </div>
       )}

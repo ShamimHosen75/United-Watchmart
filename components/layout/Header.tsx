@@ -44,7 +44,7 @@ export function Header() {
     <>
       <header
         ref={headerRef}
-        className="fixed inset-x-0 top-0 z-40 bg-gradient-to-b from-bg/90 to-transparent"
+        className="fixed inset-x-0 top-0 z-40 border-b border-hairline bg-bg/85 backdrop-blur-md"
       >
         <div className="container-site flex h-[var(--header-h)] items-center justify-between">
           <Brand />
@@ -63,8 +63,8 @@ export function Header() {
             >
               <span>{t("header.menu")}</span>
               <span aria-hidden className="flex w-7 flex-col gap-[6px]">
-                <span className="h-px w-full bg-gold transition-transform duration-300 group-hover:scale-x-75" />
-                <span className="h-px w-full bg-gold" />
+                <span className="h-px w-full bg-ivory transition-transform duration-300 group-hover:scale-x-75" />
+                <span className="h-px w-full bg-ivory" />
               </span>
             </button>
           </div>

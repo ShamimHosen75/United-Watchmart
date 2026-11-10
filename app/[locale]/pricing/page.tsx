@@ -55,7 +55,7 @@ export default async function PricingPage({ params }: Props) {
                   <td dir="ltr" className="label tabular py-6 text-start text-muted rtl:text-right">
                     {w.ref}
                   </td>
-                  <td className="tabular py-6 text-end text-20 text-gold-light">{formatPrice(w.priceUsd)}</td>
+                  <td className="tabular py-6 text-end text-20 text-ivory">{formatPrice(w.priceUsd)}</td>
                   <td className="py-6 text-end">
                     <Link
                       href={`/watch/${w.slug}`}

@@ -5,16 +5,19 @@
 /* Design tokens                                                        */
 /* ------------------------------------------------------------------ */
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 
-  --bg: #0e0803;
-  --surface: #1a120a;
-  --surface-2: #231810;
-  --ivory: #efe6d6;
-  --muted: #a8997f;
-  --gold: #c9a35c;
-  --gold-light: #e6c88a;
-  --hairline: rgba(201, 163, 92, 0.2);
+  /* Clean white palette. Token names are kept from the original dark theme:
+     --ivory is the main ink colour, --bg the page white. */
+  --bg: #ffffff;
+  --surface: #f6f4f0;
+  --surface-2: #eeeae3;
+  --ivory: #16140f;
+  --muted: #6e685e;
+  --gold: #8f6c33;
+  --gold-light: #b08a4f;
+  --hairline: rgba(22, 20, 15, 0.1);
+  --danger: #b42318;
 
   /* Fluid type scale: 14 / 16 / 20 / 28 / 40 / 64 / 96 */
   --fs-14: 0.875rem;
@@ -51,6 +54,7 @@
   --color-gold: var(--gold);
   --color-gold-light: var(--gold-light);
   --color-hairline: var(--hairline);
+  --color-danger: var(--danger);
 
   --font-serif: var(--serif);
   --font-sans: var(--sans);
@@ -119,12 +123,12 @@
   }
 
   ::selection {
-    background: var(--gold);
+    background: var(--ivory);
     color: var(--bg);
   }
 
   :focus-visible {
-    outline: 2px solid var(--gold-light);
+    outline: 2px solid var(--gold);
     outline-offset: 3px;
     border-radius: 2px;
   }
@@ -173,7 +177,7 @@
 }
 
 @utility gold-text {
-  background: linear-gradient(100deg, var(--gold) 0%, var(--gold-light) 45%, var(--gold) 100%);
+  background: linear-gradient(100deg, var(--gold) 0%, #c19a58 45%, var(--gold) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -192,7 +196,7 @@
   top: 1rem;
   z-index: 100;
   transform: translateY(-200%);
-  background: var(--gold);
+  background: var(--ivory);
   color: var(--bg);
   padding: 0.75rem 1.25rem;
 }

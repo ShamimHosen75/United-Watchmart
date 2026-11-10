@@ -34,7 +34,7 @@ export function AddToCart({ slug }: Props) {
         onClick={onAdd}
         disabled={soldOut || (atLimit && !inCart)}
         data-magnetic
-        className="label inline-flex min-h-12 items-center justify-center gap-3 bg-gold px-7 py-3 text-bg transition-colors hover:bg-gold-light disabled:cursor-not-allowed disabled:bg-surface-2 disabled:text-muted"
+        className="label inline-flex min-h-12 items-center justify-center gap-3 bg-ivory px-7 py-3 text-bg transition-colors hover:bg-gold disabled:cursor-not-allowed disabled:bg-surface-2 disabled:text-muted"
       >
         {soldOut ? t("soldOut") : justAdded ? t("added") : t("add")}
       </button>

@@ -18,7 +18,7 @@ export function Field({ id, label, error, className = "", children }: Props) {
       </label>
       {children({ id, "aria-invalid": Boolean(error), "aria-describedby": error ? errorId : undefined })}
       {error && (
-        <p id={errorId} className="mt-2 text-14 text-[#f2a7a0]">
+        <p id={errorId} className="mt-2 text-14 text-danger">
           {error}
         </p>
       )}
@@ -27,4 +27,4 @@ export function Field({ id, label, error, className = "", children }: Props) {
 }
 
 export const inputClass =
-  "mt-2 block min-h-12 w-full border-0 border-b border-gold/35 bg-transparent px-0 py-2 text-ivory placeholder:text-muted/60 transition-colors focus:border-gold focus:outline-none focus-visible:outline-none aria-[invalid=true]:border-[#f2a7a0]";
+  "mt-2 block min-h-12 w-full border-0 border-b border-gold/35 bg-transparent px-0 py-2 text-ivory placeholder:text-muted/60 transition-colors focus:border-gold focus:outline-none focus-visible:outline-none aria-[invalid=true]:border-danger";

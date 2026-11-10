@@ -63,11 +63,11 @@ export function PaymentForm({ orderRef, locale, payLabel }: Props) {
           type="submit"
           disabled={!stripe || busy}
           data-magnetic
-          className="label inline-flex min-h-14 w-full items-center justify-center bg-gold px-8 text-bg transition-colors hover:bg-gold-light disabled:cursor-wait disabled:opacity-70"
+          className="label inline-flex min-h-14 w-full items-center justify-center bg-ivory px-8 text-bg transition-colors hover:bg-gold disabled:cursor-wait disabled:opacity-70"
         >
           {busy ? t("processing") : payLabel}
         </button>
-        <p role="alert" aria-live="assertive" className="mt-4 text-[#f2a7a0] empty:hidden">
+        <p role="alert" aria-live="assertive" className="mt-4 text-danger empty:hidden">
           {error}
         </p>
         <p className="mt-4 text-14 text-muted">{t("secure")}</p>

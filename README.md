@@ -1,6 +1,6 @@
 # United WatchMart
 
-A dark, gold-accented luxury watch website in English and Arabic (RTL). The home page takes a watch apart layer by layer as you scroll; the rest of the site covers the collection, each watch, how a watch is made, prices and private viewing requests.
+A clean white, gold-accented luxury watch website in English and Arabic (RTL). The home page takes a watch apart layer by layer as you scroll; the rest of the site covers the collection, each watch, how a watch is made, prices and private viewing requests.
 
 Built with Next.js 16 (App Router), TypeScript, Tailwind CSS 4, GSAP (ScrollTrigger, SplitText, Flip) with Lenis, Three.js via React Three Fiber, next-intl, React Hook Form + Zod, Resend and Cloudflare Turnstile.
 

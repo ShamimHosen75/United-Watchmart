@@ -70,7 +70,7 @@ export function CartDrawer() {
 
   return (
     <div ref={root} className="invisible fixed inset-0 z-[60]" inert={!open}>
-      <div data-cart-backdrop aria-hidden="true" className="absolute inset-0 bg-black/60" onClick={close} />
+      <div data-cart-backdrop aria-hidden="true" className="absolute inset-0 bg-black/30" onClick={close} />
       <div
         id="cart-drawer"
         ref={panel}
@@ -129,7 +129,7 @@ export function CartDrawer() {
                             {w.ref}
                           </p>
                         </div>
-                        <p className="tabular text-gold-light">{formatPrice(w.priceUsd * line.qty)}</p>
+                        <p className="tabular text-ivory">{formatPrice(w.priceUsd * line.qty)}</p>
                       </div>
                       <div className="mt-3 flex items-center justify-between">
                         <div className="flex items-center border border-gold/30" role="group" aria-label={t("quantity")}>
@@ -164,7 +164,7 @@ export function CartDrawer() {
                         </button>
                       </div>
                       {available !== undefined && available < line.qty && (
-                        <p className="mt-2 text-14 text-[#f2a7a0]">
+                        <p className="mt-2 text-14 text-danger">
                           {available === 0 ? t("soldOut") : t("onlyLeft", { count: available })}
                         </p>
                       )}
@@ -176,12 +176,12 @@ export function CartDrawer() {
             <div className="shrink-0 px-6 py-6 hairline-t">
               <div className="flex items-baseline justify-between">
                 <span className="label text-muted">{t("subtotal")}</span>
-                <span className="tabular font-serif text-28 text-gold-light">{formatPrice(subtotal)}</span>
+                <span className="tabular font-serif text-28 text-ivory">{formatPrice(subtotal)}</span>
               </div>
               <p className="mt-2 text-14 text-muted">{t("shippingNote")}</p>
               <Link
                 href="/checkout"
-                className="label mt-6 flex min-h-12 w-full items-center justify-center bg-gold text-bg transition-colors hover:bg-gold-light"
+                className="label mt-6 flex min-h-12 w-full items-center justify-center bg-ivory text-bg transition-colors hover:bg-gold"
               >
                 {t("checkout")}
               </Link>
