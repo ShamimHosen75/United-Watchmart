@@ -57,7 +57,7 @@ export function CollectionGrid({ items, labels }: Props) {
               type="button"
               aria-pressed={filter === f}
               onClick={() => choose(f)}
-              className="label min-h-11 border border-gold/30 px-5 text-ivory/80 transition-colors hover:border-gold hover:text-ivory aria-pressed:border-gold aria-pressed:bg-gold aria-pressed:text-bg"
+              className="label min-h-11 border border-ivory/15 px-5 text-ivory/80 transition-colors hover:border-ivory hover:text-ivory aria-pressed:border-ivory aria-pressed:bg-ivory aria-pressed:text-bg"
             >
               {labels[f]}
             </button>

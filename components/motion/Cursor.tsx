@@ -71,7 +71,7 @@ export function Cursor() {
       <div
         ref={dot}
         aria-hidden="true"
-        className="pointer-events-none invisible fixed left-0 top-0 z-[100] size-1.5 rounded-full bg-gold-light"
+        className="pointer-events-none invisible fixed left-0 top-0 z-[100] size-1.5 rounded-full bg-gold"
       />
     </>
   );

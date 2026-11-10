@@ -33,7 +33,7 @@ export function WatchVisual({ slug, label, angle = "front", className = "", deco
   const tilted = angle === "hover";
 
   const strap: CSSProperties = {
-    background: `linear-gradient(90deg, rgba(0,0,0,.55), ${t.strap} 30%, ${t.strap} 70%, rgba(0,0,0,.55))`,
+    background: `linear-gradient(90deg, rgba(0,0,0,.18), ${t.strap} 30%, ${t.strap} 70%, rgba(0,0,0,.18))`,
   };
   const caseRing: CSSProperties = {
     background: `conic-gradient(from ${tilted ? 200 : 140}deg, ${t.metal}, #fff6 18%, ${t.metal} 35%, #0008 60%, ${t.metal} 85%)`,
@@ -48,7 +48,7 @@ export function WatchVisual({ slug, label, angle = "front", className = "", deco
       aria-label={decorative ? undefined : label}
       aria-hidden={decorative || undefined}
       // No position class here, so callers can make it absolute or leave it in flow.
-      className={`overflow-hidden bg-[radial-gradient(ellipse_at_50%_40%,#2a1d10_0%,#120b05_70%)] ${className}`}
+      className={`overflow-hidden bg-[radial-gradient(ellipse_at_50%_40%,#ffffff_0%,#f3f0ea_55%,#e7e2d9_100%)] ${className}`}
     >
       <div
         className="relative size-full transition-transform duration-700 ease-out-expo"
@@ -56,13 +56,13 @@ export function WatchVisual({ slug, label, angle = "front", className = "", deco
       >
         <div className="absolute inset-y-0 left-1/2 w-[30%] -translate-x-1/2" style={strap} />
         <div
-          className="absolute left-1/2 top-1/2 aspect-square w-[58%] -translate-x-1/2 -translate-y-1/2 rounded-full shadow-[0_30px_60px_-20px_rgba(0,0,0,.8)]"
+          className="absolute left-1/2 top-1/2 aspect-square w-[58%] -translate-x-1/2 -translate-y-1/2 rounded-full shadow-[0_40px_70px_-24px_rgba(40,30,15,.45)]"
           style={caseRing}
         >
           <div className="absolute inset-[9%] rounded-full" style={dial}>
-            <span className="absolute bottom-1/2 left-1/2 h-[28%] w-[3%] origin-bottom -translate-x-1/2 rotate-[-60deg] rounded-full bg-gold-light/90" />
-            <span className="absolute bottom-1/2 left-1/2 h-[40%] w-[2%] origin-bottom -translate-x-1/2 rotate-[50deg] rounded-full bg-gold-light/90" />
-            <span className="absolute left-1/2 top-1/2 size-[6%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold" />
+            <span className="absolute bottom-1/2 left-1/2 h-[28%] w-[3%] origin-bottom -translate-x-1/2 rotate-[-60deg] rounded-full bg-[#e6c88a]" />
+            <span className="absolute bottom-1/2 left-1/2 h-[40%] w-[2%] origin-bottom -translate-x-1/2 rotate-[50deg] rounded-full bg-[#e6c88a]" />
+            <span className="absolute left-1/2 top-1/2 size-[6%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#c9a35c]" />
           </div>
         </div>
       </div>

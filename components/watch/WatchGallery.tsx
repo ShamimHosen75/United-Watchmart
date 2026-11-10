@@ -80,7 +80,7 @@ export function WatchGallery({ slug, name, hasModel, labels }: Props) {
             type="button"
             aria-pressed={view === "3d"}
             onClick={() => setView(view === "3d" ? "front" : "3d")}
-            className="label ms-auto min-h-11 border border-gold/40 px-5 text-ivory transition-colors hover:border-gold aria-pressed:bg-gold aria-pressed:text-bg"
+            className="label ms-auto min-h-11 border border-ivory/15 px-5 text-ivory transition-colors hover:border-gold aria-pressed:border-ivory aria-pressed:bg-ivory aria-pressed:text-bg"
           >
             {view === "3d" ? labels.viewPhotos : labels.view3d}
           </button>

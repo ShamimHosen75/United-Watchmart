@@ -29,7 +29,7 @@ export function WatchCard({ watch, className = "", headingLevel: Heading = "h3" 
           <Heading className="text-28 text-ivory">{watch.name}</Heading>
           <p className="label mt-1 text-muted tabular">{watch.ref}</p>
         </div>
-        <p className="tabular pt-1 text-20 text-gold-light">{formatPrice(watch.priceUsd)}</p>
+        <p className="tabular pt-1 text-20 text-ivory">{formatPrice(watch.priceUsd)}</p>
       </div>
       <span
         aria-hidden

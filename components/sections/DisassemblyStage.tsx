@@ -163,7 +163,7 @@ function PinnedStage({ mode, label, title, visualLabel, steps }: StageCopy & { m
               <li
                 key={step.id}
                 data-caption
-                className="grid grid-cols-[2.5rem_1fr] gap-3 py-2 opacity-20 transition-opacity duration-500 data-active:opacity-100"
+                className="grid grid-cols-[2.5rem_1fr] gap-3 py-2 opacity-35 transition-opacity duration-500 data-active:opacity-100"
               >
                 <span className="label tabular pt-1 text-gold">{String(i + 1).padStart(2, "0")}</span>
                 <div>

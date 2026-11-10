@@ -16,20 +16,20 @@ export function ogCard({ eyebrow, title, meta }: Props) {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: 72,
-          background: "radial-gradient(ellipse at 75% 40%, #2a1d10 0%, #0e0803 65%)",
-          color: "#efe6d6",
+          background: "radial-gradient(ellipse at 75% 40%, #ffffff 0%, #f3f0ea 70%)",
+          color: "#16140f",
         }}
       >
         <div style={{ display: "flex", fontSize: 30, letterSpacing: 2 }}>
           <span>United&nbsp;</span>
-          <span style={{ color: "#c9a35c" }}>WatchMart</span>
+          <span style={{ color: "#8f6c33" }}>WatchMart</span>
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <div style={{ fontSize: 22, letterSpacing: 5, textTransform: "uppercase", color: "#c9a35c" }}>{eyebrow}</div>
+          <div style={{ fontSize: 22, letterSpacing: 5, textTransform: "uppercase", color: "#8f6c33" }}>{eyebrow}</div>
           <div style={{ fontSize: 96, lineHeight: 1.05, marginTop: 16 }}>{title}</div>
-          {meta && <div style={{ fontSize: 30, color: "#a8997f", marginTop: 20 }}>{meta}</div>}
+          {meta && <div style={{ fontSize: 30, color: "#6e685e", marginTop: 20 }}>{meta}</div>}
         </div>
-        <div style={{ display: "flex", height: 2, width: 160, background: "#c9a35c" }} />
+        <div style={{ display: "flex", height: 2, width: 160, background: "#8f6c33" }} />
       </div>
     ),
     ogSize,

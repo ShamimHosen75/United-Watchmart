@@ -84,7 +84,7 @@ export default async function WatchPage({ params }: Props) {
             {t("watch.ref")} <span dir="ltr">{watch.ref}</span>
           </p>
           <p className="mt-8 max-w-md text-20 text-ivory/80">{watch.tagline}</p>
-          <p className="tabular mt-10 font-serif text-40 text-gold-light">{formatPrice(watch.priceUsd)}</p>
+          <p className="tabular mt-10 font-serif text-40 text-ivory">{formatPrice(watch.priceUsd)}</p>
           <div className="mt-6 flex flex-wrap items-start gap-4">
             {shopEnabled && <AddToCart slug={watch.slug} />}
             <ButtonLink variant={shopEnabled ? "outline" : "solid"} href={{ pathname: "/", query: { watch: watch.slug }, hash: "visit" }}>

@@ -239,14 +239,14 @@ export function EnquiryForm({ watches, locale }: Props) {
             type="submit"
             disabled={isSubmitting}
             data-magnetic
-            className="label inline-flex min-h-12 items-center justify-center gap-3 bg-gold px-8 py-3 text-bg transition-colors hover:bg-gold-light disabled:cursor-wait disabled:opacity-70"
+            className="label inline-flex min-h-12 items-center justify-center gap-3 bg-ivory px-8 py-3 text-bg transition-colors hover:bg-gold disabled:cursor-wait disabled:opacity-70"
           >
             {isSubmitting ? t("sending") : t("submit")}
           </button>
           <p className="text-14 text-muted">{t("privacy")}</p>
         </div>
 
-        <p role="alert" aria-live="assertive" className="text-[#f2a7a0] empty:hidden sm:col-span-2">
+        <p role="alert" aria-live="assertive" className="text-danger empty:hidden sm:col-span-2">
           {formError}
         </p>
       </form>
