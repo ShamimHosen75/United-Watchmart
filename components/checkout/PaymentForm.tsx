@@ -4,7 +4,7 @@ import { useState } from "react";
 import { AddressElement, LinkAuthenticationElement, PaymentElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useTranslations } from "next-intl";
 
-type Props = { orderRef: string; locale: "en" | "ar"; payLabel: string };
+type Props = { orderRef: string; locale: "en"; payLabel: string };
 
 /** Contact, shipping and payment, confirmed in one step with stripe.confirmPayment. */
 export function PaymentForm({ orderRef, locale, payLabel }: Props) {
@@ -32,7 +32,7 @@ export function PaymentForm({ orderRef, locale, payLabel }: Props) {
     const { error: confirmError } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: `${window.location.origin}/${locale}/checkout/complete?ref=${encodeURIComponent(orderRef)}`,
+        return_url: `${window.location.origin}/checkout/complete?ref=${encodeURIComponent(orderRef)}`,
         receipt_email: email || undefined,
       },
     });

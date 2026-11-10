@@ -437,23 +437,11 @@
           "primaryKey": false,
           "notNull": false
         },
-        "title_ar": {
-          "name": "title_ar",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
         "body": {
           "name": "body",
           "type": "text",
           "primaryKey": false,
           "notNull": true
-        },
-        "body_ar": {
-          "name": "body_ar",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
         },
         "author_name": {
           "name": "author_name",

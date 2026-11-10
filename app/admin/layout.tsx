@@ -12,7 +12,7 @@ export const viewport: Viewport = { themeColor: "#0e0803", colorScheme: "dark" }
 /** Root layout for the boutique's admin area (English, left to right, no site chrome). */
 export default function AdminRootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" dir="ltr" className={fontVariables}>
+    <html lang="en" className={fontVariables}>
       <body className="min-h-svh">{children}</body>
     </html>
   );

@@ -24,9 +24,7 @@ async function loadAll(): Promise<readonly Review[]> {
       slug: r.slug,
       rating: Math.min(5, Math.max(1, r.rating)) as Review["rating"],
       title: r.title ?? undefined,
-      titleAr: r.titleAr ?? undefined,
       body: r.body,
-      bodyAr: r.bodyAr ?? undefined,
       authorName: r.authorName,
       authorCity: r.authorCity ?? undefined,
       verified: r.verified,
@@ -38,9 +36,6 @@ async function loadAll(): Promise<readonly Review[]> {
     return sampleReviews;
   }
 }
-
-const localize = (r: Review, locale: Locale): Review =>
-  locale === "ar" ? { ...r, body: r.bodyAr ?? r.body, title: r.titleAr ?? r.title } : r;
 
 const newestFirst = (a: Review, b: Review) => b.date.localeCompare(a.date);
 
@@ -68,11 +63,11 @@ export async function getFeaturedReviews(locale: Locale, limit = 6) {
   const all = await loadAll();
   const featured = all.filter((r) => r.featured).sort(newestFirst);
   const list = (featured.length ? featured : [...all].sort(newestFirst)).slice(0, limit);
-  return { reviews: list.map((r) => localize(r, locale)), summary: summarize(all) };
+  return { reviews: list, summary: summarize(all) };
 }
 
 /** Every review for one watch, newest first, plus its summary. */
 export async function getWatchReviews(slug: string, locale: Locale) {
   const list = (await loadAll()).filter((r) => r.slug === slug).sort(newestFirst);
-  return { reviews: list.map((r) => localize(r, locale)), summary: summarize(list) };
+  return { reviews: list, summary: summarize(list) };
 }

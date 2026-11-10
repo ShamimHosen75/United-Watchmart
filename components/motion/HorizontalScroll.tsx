@@ -21,11 +21,10 @@ export function HorizontalScroll({ children, className = "" }: Props) {
       const mm = gsap.matchMedia();
       mm.add("(min-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
         track.setAttribute("data-pinned", "");
-        const rtl = document.documentElement.dir === "rtl";
         const distance = () => Math.max(0, track.scrollWidth - window.innerWidth);
 
         gsap.to(track, {
-          x: () => (rtl ? 1 : -1) * distance(),
+          x: () => -distance(),
           ease: "none",
           scrollTrigger: {
             trigger: section,

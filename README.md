@@ -1,6 +1,6 @@
 # United WatchMart
 
-A clean white, gold-accented luxury watch website in English and Arabic (RTL). The home page takes a watch apart layer by layer as you scroll; the rest of the site covers the collection, each watch, how a watch is made, prices and private viewing requests.
+A clean white, gold-accented luxury watch website in English. The home page takes a watch apart layer by layer as you scroll; the rest of the site covers the collection, each watch, how a watch is made, prices and private viewing requests.
 
 Built with Next.js 16 (App Router), TypeScript, Tailwind CSS 4, GSAP (ScrollTrigger, SplitText, Flip) with Lenis, Three.js via React Three Fiber, next-intl, React Hook Form + Zod, Resend and Cloudflare Turnstile.
 
@@ -12,7 +12,7 @@ cp .env.example .env.local   # fill in what you have; see below
 npm run dev
 ```
 
-Open http://localhost:3000 (redirects to `/en`; Arabic is at `/ar`).
+Open http://localhost:3000. Pages have no language prefix (`/collection`, not `/en/collection`); old `/en/...` and `/ar/...` links redirect.
 
 | Script | What it does |
 | --- | --- |
@@ -33,8 +33,8 @@ All settings are listed in [`.env.example`](.env.example).
 
 ## Content and assets
 
-- Watches: [`data/products.ts`](data/products.ts) (Arabic copy in `data/products.ar.ts`); anatomy chapters: [`data/anatomy.ts`](data/anatomy.ts).
-- Interface text: [`messages/en.json`](messages/en.json) and [`messages/ar.json`](messages/ar.json).
+- Watches: [`data/products.ts`](data/products.ts); anatomy chapters: [`data/anatomy.ts`](data/anatomy.ts).
+- Interface text: [`messages/en.json`](messages/en.json).
 - The 3D watch is a placeholder built in code. To use a real model, add `public/models/hero.glb` (mesh names as in `data/hero.ts`) and set `heroModel.ready = true`. A frame sequence goes in `public/frames/hero/` with `heroFrames.count` set.
 - Watch images are gradient placeholders until real photography is added.
 

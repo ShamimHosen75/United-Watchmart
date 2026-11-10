@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function LegalPage({ params }: Props) {
   const locale = await resolveLocale(params);
   const t = await getTranslations("legal");
-  const updated = new Intl.DateTimeFormat(locale === "ar" ? "ar-AE-u-nu-latn" : "en-GB", {
+  const updated = new Intl.DateTimeFormat("en-GB", {
     dateStyle: "long",
   }).format(new Date(LAST_UPDATED));
 

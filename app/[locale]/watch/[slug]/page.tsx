@@ -43,7 +43,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     path: `/watch/${watch.slug}`,
     title: `${watch.name} · ${watch.ref}`,
     description: watch.tagline,
-    image: `/${locale}/watch/${watch.slug}/opengraph-image`,
+    image: `/watch/${watch.slug}/opengraph-image`,
   });
 }
 
@@ -79,15 +79,15 @@ export default async function WatchPage({ params }: Props) {
             <span aria-hidden className="mx-2">
               /
             </span>
-            <span aria-current="page" dir="ltr">
+            <span aria-current="page">
               {watch.name}
             </span>
           </nav>
-          <h1 dir="ltr" className="mt-8 text-96 rtl:text-right">
+          <h1 className="mt-8 text-96">
             {watch.name}
           </h1>
           <p className="label tabular mt-4 text-gold">
-            {t("watch.ref")} <span dir="ltr">{watch.ref}</span>
+            {t("watch.ref")} <span>{watch.ref}</span>
           </p>
           <p className="mt-8 max-w-md text-20 text-ivory/80">{watch.tagline}</p>
           {rating.count > 0 && (
@@ -162,17 +162,17 @@ export default async function WatchPage({ params }: Props) {
       <nav aria-label={t("watch.others")} className="container-site hairline-t mt-24 grid grid-cols-2 gap-6 pt-8">
         <Link href={`/watch/${prev.slug}`} className="group">
           <span className="label text-muted">
-            <span aria-hidden className="inline-block rtl:-scale-x-100">←</span> {t("watch.prev")}
+            <span aria-hidden className="inline-block">←</span> {t("watch.prev")}
           </span>
-          <span dir="ltr" className="mt-2 block font-serif text-28 group-hover:text-gold-light rtl:text-right">
+          <span className="mt-2 block font-serif text-28 group-hover:text-gold-light">
             {prev.name}
           </span>
         </Link>
         <Link href={`/watch/${next.slug}`} className="group text-end">
           <span className="label text-muted">
-            {t("watch.next")} <span aria-hidden className="inline-block rtl:-scale-x-100">→</span>
+            {t("watch.next")} <span aria-hidden className="inline-block">→</span>
           </span>
-          <span dir="ltr" className="mt-2 block font-serif text-28 group-hover:text-gold-light rtl:text-left">
+          <span className="mt-2 block font-serif text-28 group-hover:text-gold-light">
             {next.name}
           </span>
         </Link>

@@ -40,7 +40,7 @@ export type EnquiryField = keyof EnquiryInput;
 /** What the server receives: the form plus the Turnstile token and page language. */
 export const enquiryRequestSchema = enquirySchema.extend({
   token: z.string().min(1, "captcha"),
-  locale: z.enum(["en", "ar"]),
+  locale: z.enum(["en"]),
 });
 export type EnquiryRequest = z.input<typeof enquiryRequestSchema>;
 

@@ -149,7 +149,7 @@ function PinnedStage({ mode, label, title, visualLabel, steps }: StageCopy & { m
       {/* Keeps captions readable where the canvas sits behind them */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-gradient-to-r from-bg via-bg/70 to-transparent lg:via-bg/40 rtl:bg-gradient-to-l"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-r from-bg via-bg/70 to-transparent lg:via-bg/40"
       />
 
       <div className="container-site pointer-events-none relative flex h-full flex-col justify-center pt-[var(--header-h)]">
@@ -174,13 +174,13 @@ function PinnedStage({ mode, label, title, visualLabel, steps }: StageCopy & { m
             ))}
           </ol>
           <div className="mt-8 flex items-center gap-4">
-            <span dir="ltr" className="label tabular text-gold">
+            <span className="label tabular text-gold">
               <span data-stage-count>01</span> / {String(n).padStart(2, "0")}
             </span>
             <span className="block h-px flex-1 bg-hairline">
               <span
                 data-stage-bar
-                className="block h-full origin-[0%_50%] scale-x-0 bg-gold rtl:origin-[100%_50%]"
+                className="block h-full origin-[0%_50%] scale-x-0 bg-gold"
               />
             </span>
           </div>

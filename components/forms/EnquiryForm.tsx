@@ -152,8 +152,8 @@ export function EnquiryForm({ watches, locale }: Props) {
               type="email"
               inputMode="email"
               autoComplete="email"
-              dir="ltr"
-              className={`${inputClass} rtl:text-right`}
+             
+              className={`${inputClass}`}
             />
           )}
         </Field>
@@ -166,8 +166,8 @@ export function EnquiryForm({ watches, locale }: Props) {
               type="tel"
               inputMode="tel"
               autoComplete="tel"
-              dir="ltr"
-              className={`${inputClass} rtl:text-right`}
+             
+              className={`${inputClass}`}
             />
           )}
         </Field>

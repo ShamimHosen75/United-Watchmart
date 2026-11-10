@@ -111,10 +111,7 @@ export const reviews = pgTable(
     slug: text("slug").notNull(),
     rating: integer("rating").notNull(),
     title: text("title"),
-    titleAr: text("title_ar"),
     body: text("body").notNull(),
-    /** Optional Arabic version of the review shown on /ar pages. */
-    bodyAr: text("body_ar"),
     authorName: text("author_name").notNull(),
     authorCity: text("author_city"),
     verified: boolean("verified").notNull().default(false),

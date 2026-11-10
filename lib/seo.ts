@@ -1,13 +1,11 @@
 import type { Metadata } from "next";
-import { routing, type Locale } from "@/i18n/routing";
+import type { Locale } from "@/i18n/routing";
 import type { Watch } from "@/data/products";
 
 export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://unitedwatchmart.com").replace(/\/$/, "");
 
-/** Absolute URL for a locale and a path such as "/collection" ("" for home). */
-export const localeUrl = (locale: Locale, path = "") => `${siteUrl}/${locale}${path}`;
-
-const ogLocale: Record<Locale, string> = { en: "en_US", ar: "ar_AE" };
+/** Absolute URL for a path such as "/collection" ("" for home). URLs carry no language prefix. */
+export const localeUrl = (_locale: Locale, path = "") => `${siteUrl}${path || "/"}`;
 
 type PageMetaInput = {
   locale: Locale;
@@ -31,23 +29,19 @@ export function pageMetadata({
   absoluteTitle = false,
 }: PageMetaInput): Metadata {
   const url = localeUrl(locale, path);
-  const languages = Object.fromEntries(routing.locales.map((l) => [l, localeUrl(l, path)]));
-  const ogImage = image ?? `/${locale}/opengraph-image`;
+  const ogImage = image ?? "/opengraph-image";
 
   return {
     title: absoluteTitle ? { absolute: title } : title,
     description,
-    alternates: {
-      canonical: url,
-      languages: { ...languages, "x-default": localeUrl(routing.defaultLocale, path) },
-    },
+    alternates: { canonical: url },
     openGraph: {
       type,
       url,
       title,
       description,
       siteName: "United WatchMart",
-      locale: ogLocale[locale],
+      locale: "en_US",
       images: [{ url: ogImage, width: 1200, height: 630, alt: title }],
     },
     twitter: {
@@ -69,7 +63,7 @@ export function productJsonLd(watch: Watch, locale: Locale) {
     mpn: watch.ref,
     description: watch.tagline,
     url: localeUrl(locale, `/watch/${watch.slug}`),
-    image: `${siteUrl}/${locale}/watch/${watch.slug}/opengraph-image`,
+    image: `${siteUrl}/watch/${watch.slug}/opengraph-image`,
     brand: { "@type": "Brand", name: "United WatchMart" },
     material: watch.specs.caseMaterial,
     offers: {

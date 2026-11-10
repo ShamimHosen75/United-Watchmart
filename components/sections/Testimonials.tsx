@@ -58,7 +58,7 @@ export async function Testimonials() {
                     {r.authorCity}
                     {r.authorCity && watch && <span aria-hidden className="mx-2">·</span>}
                     {watch && (
-                      <Link href={`/watch/${watch.slug}`} dir="ltr" className="text-gold hover:text-gold-light">
+                      <Link href={`/watch/${watch.slug}`} className="text-gold hover:text-gold-light">
                         {watch.name}
                       </Link>
                     )}

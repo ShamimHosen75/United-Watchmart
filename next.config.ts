@@ -11,6 +11,13 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
   },
+  // The site used to live under /en and /ar. Send old links to the same page without the prefix.
+  async redirects() {
+    return [
+      { source: "/:lang(en|ar)", destination: "/", permanent: true },
+      { source: "/:lang(en|ar)/:path*", destination: "/:path*", permanent: true },
+    ];
+  },
 };
 
 export default withNextIntl(nextConfig);

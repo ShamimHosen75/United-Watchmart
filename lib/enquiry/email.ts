@@ -6,10 +6,10 @@ import { sendMail } from "@/lib/email/send";
 import { formatPrice } from "@/lib/format";
 import type { EnquiryValues } from "./schema";
 
-type Locale = "en" | "ar";
+type Locale = "en";
 
-const formatDate = (iso: string, locale: Locale) =>
-  new Intl.DateTimeFormat(locale === "ar" ? "ar-AE-u-nu-latn" : "en-GB", { dateStyle: "full", timeZone: "UTC" }).format(
+const formatDate = (iso: string) =>
+  new Intl.DateTimeFormat("en-GB", { dateStyle: "full", timeZone: "UTC" }).format(
     new Date(`${iso}T00:00:00Z`),
   );
 
@@ -26,22 +26,20 @@ export async function sendEnquiryEmails(data: EnquiryValues, locale: Locale) {
     ["Email", data.email],
     ["Phone", data.phone || "—"],
     ["Watch", watchLabel],
-    ["Preferred date", formatDate(data.date, "en")],
-    ["Language", locale === "ar" ? "Arabic" : "English"],
+    ["Preferred date", formatDate(data.date)],
     ["Message", data.message || "—"],
   ];
   const boutiqueTitle = `Viewing request: ${watch?.name ?? data.watch}`;
   const boutiqueIntro = `${data.name} would like to see a watch in person.`;
 
-  // Customer confirmation in their language.
+  // Customer confirmation.
   const t = await getTranslations({ locale, namespace: "email" });
   const customerRows: Row[] = [
     [t("watch"), watch ? `${watch.name} · ${watch.ref}` : data.watch],
-    [t("date"), formatDate(data.date, locale)],
+    [t("date"), formatDate(data.date)],
   ];
   const customerTitle = t("title", { name: data.name });
   const customerIntro = t("intro");
-  const dir = locale === "ar" ? "rtl" : "ltr";
 
   await sendMail(
     [
@@ -49,14 +47,14 @@ export async function sendEnquiryEmails(data: EnquiryValues, locale: Locale) {
         to: cfg.boutique,
         replyTo: data.email,
         subject: boutiqueTitle,
-        html: emailHtml({ dir: "ltr", title: boutiqueTitle, intro: boutiqueIntro, rows: boutiqueRows }),
+        html: emailHtml({ title: boutiqueTitle, intro: boutiqueIntro, rows: boutiqueRows }),
         text: emailText(boutiqueTitle, boutiqueIntro, boutiqueRows),
       },
       {
         to: data.email,
         replyTo: cfg.boutique || undefined,
         subject: t("subject"),
-        html: emailHtml({ dir, title: customerTitle, intro: customerIntro, rows: customerRows }),
+        html: emailHtml({ title: customerTitle, intro: customerIntro, rows: customerRows }),
         text: emailText(customerTitle, customerIntro, customerRows),
       },
     ],

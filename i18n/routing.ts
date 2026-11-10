@@ -1,13 +1,14 @@
 import { defineRouting } from "next-intl/routing";
 
-export const locales = ["en", "ar"] as const;
+// The site is English only. next-intl is kept for its message files, and the
+// locale never appears in URLs (the home page is "/", not "/en").
+export const locales = ["en"] as const;
 export type Locale = (typeof locales)[number];
 
 export const routing = defineRouting({
   locales,
   defaultLocale: "en",
-  localePrefix: "always",
+  localePrefix: "never",
+  localeDetection: false,
+  localeCookie: false,
 });
-
-export const rtlLocales: readonly Locale[] = ["ar"];
-export const dirOf = (locale: Locale) => (rtlLocales.includes(locale) ? "rtl" : "ltr");

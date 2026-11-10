@@ -78,7 +78,7 @@ export default async function CompletePage({ params, searchParams }: Props) {
           <ul className="mt-4">
             {items.map((i) => (
               <li key={i.id} className="flex justify-between gap-4 py-3 hairline-b">
-                <span dir="ltr">
+                <span>
                   {i.name} · {i.ref} × {i.quantity}
                 </span>
                 <span className="tabular text-ivory">{formatCents(i.unitPriceCents * i.quantity)}</span>
