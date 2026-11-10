@@ -111,7 +111,7 @@ export function AnatomyChapters({ chapters, labels }: Props) {
             <span className="mt-2 block h-px w-full bg-hairline">
               <span
                 data-progress-bar
-                className="block h-full origin-[0%_50%] scale-x-0 bg-gold rtl:origin-[100%_50%]"
+                className="block h-full origin-[0%_50%] scale-x-0 bg-gold"
               />
             </span>
           </nav>

@@ -9,7 +9,6 @@ import { gsap, useGSAP } from "@/lib/gsap";
 import { lockScroll, unlockScroll } from "@/lib/lenis";
 import { isCovered } from "@/lib/page-state";
 import { Brand } from "./Brand";
-import { LanguageSwitch } from "./LanguageSwitch";
 import { mainLinks } from "./nav-links";
 
 type Props = { open: boolean; onClose: () => void };
@@ -131,7 +130,6 @@ export function Menu({ open, onClose }: Props) {
       <div className="container-site flex h-[var(--header-h)] shrink-0 items-center justify-between">
         <Brand />
         <div className="flex items-center gap-4 lg:gap-8">
-          <LanguageSwitch className="hidden sm:flex" />
           <button
             type="button"
             data-menu-close
@@ -180,8 +178,8 @@ export function Menu({ open, onClose }: Props) {
                   href={`/watch/${w.slug}`}
                   className="flex min-h-12 items-center justify-between gap-4 py-2 text-ivory transition-colors hover:text-gold-light"
                 >
-                  <span dir="ltr">{w.name}</span>
-                  <span dir="ltr" className="label tabular text-muted">
+                  <span>{w.name}</span>
+                  <span className="label tabular text-muted">
                     {w.ref}
                   </span>
                 </Link>
@@ -196,7 +194,6 @@ export function Menu({ open, onClose }: Props) {
         className="container-site hairline-t flex shrink-0 flex-wrap items-center justify-between gap-4 py-6"
       >
         <p className="label text-muted">{t("menu.viewings")}</p>
-        <LanguageSwitch className="sm:hidden" />
         <Link href={{ pathname: "/", hash: "visit" }} className="label text-gold hover:text-gold-light">
           {t("nav.visit")}
         </Link>

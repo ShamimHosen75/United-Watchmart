@@ -12,7 +12,7 @@ import { PageTransition } from "@/components/motion/PageTransition";
 import { Preloader } from "@/components/motion/Preloader";
 import { Reveal } from "@/components/motion/Reveal";
 import { resolveLocale } from "@/i18n/locale";
-import { dirOf, routing } from "@/i18n/routing";
+import { routing } from "@/i18n/routing";
 import { fontVariables } from "@/lib/fonts";
 import { headScript } from "@/lib/page-state";
 import { siteUrl } from "@/lib/seo";
@@ -49,7 +49,7 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   return (
     // The head script adds classes before hydration, hence suppressHydrationWarning.
-    <html lang={locale} dir={dirOf(locale)} className={fontVariables} suppressHydrationWarning>
+    <html lang={locale} dir="ltr" className={fontVariables} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: headScript }} />
       </head>

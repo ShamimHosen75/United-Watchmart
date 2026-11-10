@@ -10,7 +10,7 @@ import { cancelPendingOrder, expireStaleOrders, findReusableOrder, reserveOrder,
 
 const inputSchema = z.object({
   items: cartSchema,
-  locale: z.enum(["en", "ar"]),
+  locale: z.enum(["en"]),
   /** A pending order this browser started earlier, reused when the cart is unchanged. */
   existingRef: z.string().max(20).optional(),
 });

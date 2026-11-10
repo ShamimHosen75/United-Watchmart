@@ -7,7 +7,7 @@ const wordmarkClass = "inline-flex items-baseline gap-2 font-brand leading-none 
 /** The Latin wordmark as plain text (used in overlays). */
 export function Wordmark({ className = "" }: { className?: string }) {
   return (
-    <span dir="ltr" className={`${wordmarkClass} ${className}`}>
+    <span className={`${wordmarkClass} ${className}`}>
       <span>United</span>{" "}
       <span className="text-gold">WatchMart</span>
     </span>
@@ -20,7 +20,7 @@ export function Brand({ className = "", onClick }: Props) {
     <Link
       href="/"
       onClick={onClick}
-      dir="ltr"
+     
       className={`${wordmarkClass} text-[1.5rem] ${className}`}
     >
       <span>United</span>{" "}

@@ -6,7 +6,6 @@ import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
 import { CartButton } from "@/components/cart/CartButton";
 import { shopEnabled } from "@/lib/shop/config";
 import { Brand } from "./Brand";
-import { LanguageSwitch } from "./LanguageSwitch";
 import { Menu } from "./Menu";
 
 export function Header() {
@@ -49,7 +48,6 @@ export function Header() {
         <div className="container-site flex h-[var(--header-h)] items-center justify-between">
           <Brand />
           <div className="flex items-center gap-4 lg:gap-8">
-            <LanguageSwitch className="hidden sm:flex" />
             {shopEnabled && <CartButton />}
             <button
               ref={buttonRef}

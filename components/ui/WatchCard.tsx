@@ -33,7 +33,7 @@ export function WatchCard({ watch, className = "", headingLevel: Heading = "h3" 
       </div>
       <span
         aria-hidden
-        className="mt-4 block h-px origin-[0%_50%] scale-x-[0.15] bg-gold transition-transform duration-500 ease-out-expo group-hover:scale-x-100 group-focus-visible:scale-x-100 rtl:origin-[100%_50%]"
+        className="mt-4 block h-px origin-[0%_50%] scale-x-[0.15] bg-gold transition-transform duration-500 ease-out-expo group-hover:scale-x-100 group-focus-visible:scale-x-100"
       />
     </Link>
   );

@@ -14,7 +14,7 @@ import { lockScroll, unlockScroll } from "@/lib/lenis";
 import { shop } from "@/lib/shop/config";
 import { useDialogKeys } from "@/lib/use-dialog";
 
-/** Slide-out cart. Enters from the inline end (right in English, left in Arabic). */
+/** Slide-out cart. Enters from the inline end (from the right). */
 export function CartDrawer() {
   const t = useTranslations("cart");
   const open = useCartOpen();
@@ -38,7 +38,7 @@ export function CartDrawer() {
       const p = panel.current;
       if (!el || !p) return;
       const reduce = prefersReducedMotion();
-      const offscreen = document.documentElement.dir === "rtl" ? -100 : 100;
+      const offscreen = 100;
 
       if (open) {
         wasOpen.current = true;
@@ -122,10 +122,10 @@ export function CartDrawer() {
                     <div className="flex min-w-0 flex-1 flex-col">
                       <div className="flex items-start justify-between gap-3">
                         <div>
-                          <Link href={`/watch/${w.slug}`} dir="ltr" className="font-serif text-20 hover:text-gold-light">
+                          <Link href={`/watch/${w.slug}`} className="font-serif text-20 hover:text-gold-light">
                             {w.name}
                           </Link>
-                          <p dir="ltr" className="label tabular text-muted rtl:text-right">
+                          <p className="label tabular text-muted">
                             {w.ref}
                           </p>
                         </div>

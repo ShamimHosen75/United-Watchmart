@@ -48,11 +48,11 @@ export default async function PricingPage({ params }: Props) {
               {products.map((w) => (
                 <tr key={w.slug} className="hairline-b group">
                   <th scope="row" className="py-6 text-start font-normal">
-                    <span dir="ltr" className="font-serif text-28">
+                    <span className="font-serif text-28">
                       {w.name}
                     </span>
                   </th>
-                  <td dir="ltr" className="label tabular py-6 text-start text-muted rtl:text-right">
+                  <td className="label tabular py-6 text-start text-muted">
                     {w.ref}
                   </td>
                   <td className="tabular py-6 text-end text-20 text-ivory">{formatPrice(w.priceUsd)}</td>

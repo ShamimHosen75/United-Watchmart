@@ -13,8 +13,8 @@ export function getStripeJs() {
 }
 
 /** Payment, Address and Link elements styled to match the site. */
-export function elementsOptions(clientSecret: string, locale: "en" | "ar"): StripeElementsOptions {
-  const font = locale === "ar" ? "Noto Naskh Arabic" : "Manrope";
+export function elementsOptions(clientSecret: string, locale: "en"): StripeElementsOptions {
+  const font = "Manrope";
   const appearance: Appearance = {
     theme: "night",
     variables: {
@@ -44,10 +44,7 @@ export function elementsOptions(clientSecret: string, locale: "en" | "ar"): Stri
     locale,
     fonts: [
       {
-        cssSrc:
-          locale === "ar"
-            ? "https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500&display=swap"
-            : "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap",
+        cssSrc: "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap",
       },
     ],
   };

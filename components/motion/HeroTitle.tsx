@@ -29,7 +29,6 @@ export function HeroTitle({ children, className = "" }: Props) {
       document.fonts.ready.then(
         contextSafe(() => {
           if (!isCovered()) return; // cover already gone: leave the text as it is
-          // Words only, never chars: splitting Arabic letters would break their joins.
           const split = SplitText.create(el, { type: "lines", mask: "lines" });
           gsap.set(split.lines, { yPercent: 110 });
           gsap.set(fades, { autoAlpha: 0, y: 24 });

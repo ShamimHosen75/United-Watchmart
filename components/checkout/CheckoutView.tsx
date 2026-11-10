@@ -12,7 +12,7 @@ import { formatCents } from "@/lib/format";
 import { elementsOptions, getStripeJs } from "@/lib/stripe/client";
 import { PaymentForm } from "./PaymentForm";
 
-type Props = { locale: "en" | "ar" };
+type Props = { locale: "en" };
 type Ready = Extract<CheckoutResult, { ok: true }>;
 type State = { key: string; result: CheckoutResult | null };
 
@@ -97,10 +97,10 @@ export function CheckoutView({ locale }: Props) {
               <li key={i.slug} className="flex items-center gap-4 py-4 hairline-b">
                 <WatchVisual slug={i.slug} label="" decorative className="relative size-16 shrink-0" />
                 <div className="min-w-0 flex-1">
-                  <p dir="ltr" className="font-serif text-20 rtl:text-right">
+                  <p className="font-serif text-20">
                     {i.name}
                   </p>
-                  <p dir="ltr" className="label tabular text-muted rtl:text-right">
+                  <p className="label tabular text-muted">
                     {i.ref} · ×{i.quantity}
                   </p>
                 </div>
@@ -123,7 +123,7 @@ export function CheckoutView({ locale }: Props) {
           {ready && (
             <p className="mt-6 text-14 text-muted">
               {t("held", {
-                time: new Intl.DateTimeFormat(locale === "ar" ? "ar-AE-u-nu-latn" : "en-GB", { timeStyle: "short" }).format(
+                time: new Intl.DateTimeFormat("en-GB", { timeStyle: "short" }).format(
                   new Date(ready.expiresAt),
                 ),
               })}

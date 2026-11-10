@@ -62,7 +62,7 @@ export default async function OrderPage({ params, searchParams }: Props) {
         {order.stockIssue && <AttentionBadge />}
       </div>
       <p className="mt-2 text-14 text-muted">
-        Created {dateTime(order.createdAt)} · {order.locale === "ar" ? "Arabic" : "English"} site
+        Created {dateTime(order.createdAt)}
       </p>
 
       <div className="mt-8">

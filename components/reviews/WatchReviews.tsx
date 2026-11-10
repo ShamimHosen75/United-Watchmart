@@ -10,7 +10,7 @@ import { Verified } from "./Verified";
 type Props = { slug: string; name: string; locale: Locale };
 
 const dateFormat = (locale: Locale) =>
-  new Intl.DateTimeFormat(locale === "ar" ? "ar-AE-u-nu-latn" : "en-US", { month: "long", year: "numeric" });
+  new Intl.DateTimeFormat("en-US", { month: "long", year: "numeric" });
 
 /** Reviews block on a watch page: rating summary on one side, the reviews on the other. */
 export async function WatchReviews({ slug, name, locale }: Props) {

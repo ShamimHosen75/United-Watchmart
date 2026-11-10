@@ -32,9 +32,9 @@ export function NewsletterForm() {
         type="email"
         required
         autoComplete="email"
-        dir="ltr"
+       
         placeholder={t("newsletterPlaceholder")}
-        className="min-h-12 w-full bg-transparent text-ivory placeholder:text-muted/70 focus:outline-none rtl:text-right"
+        className="min-h-12 w-full bg-transparent text-ivory placeholder:text-muted/70 focus:outline-none"
       />
       <button type="submit" className="label shrink-0 px-2 text-gold transition-colors hover:text-gold-light">
         {t("subscribe")}

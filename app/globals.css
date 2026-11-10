@@ -58,7 +58,6 @@
 
   --font-serif: var(--serif);
   --font-sans: var(--sans);
-  /* The Latin wordmark keeps Cormorant in both languages */
   --font-brand: var(--font-display), Georgia, serif;
 
   --text-14: var(--fs-14);
@@ -70,12 +69,6 @@
   --text-96: var(--fs-96);
 
   --ease-out-expo: var(--ease-out);
-}
-
-/* Arabic: swap both families to Noto Naskh Arabic */
-:root[dir="rtl"] {
-  --serif: var(--font-arabic), serif;
-  --sans: var(--font-arabic), system-ui, sans-serif;
 }
 
 /* ------------------------------------------------------------------ */
@@ -108,14 +101,6 @@
     line-height: 1.05;
     letter-spacing: -0.01em;
     text-wrap: balance;
-  }
-
-  :root[dir="rtl"] h1,
-  :root[dir="rtl"] h2,
-  :root[dir="rtl"] h3,
-  :root[dir="rtl"] h4 {
-    line-height: 1.35;
-    letter-spacing: 0;
   }
 
   p {
@@ -181,12 +166,6 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-}
-
-/* Arabic does not use letter-spacing or uppercase */
-:root[dir="rtl"] .label {
-  letter-spacing: 0;
-  text-transform: none;
 }
 
 /* Skip link */

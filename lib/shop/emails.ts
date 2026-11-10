@@ -6,7 +6,7 @@ import { sendMail, type Mail } from "@/lib/email/send";
 import { formatCents } from "@/lib/format";
 import { siteUrl } from "@/lib/seo";
 
-type Locale = "en" | "ar";
+type Locale = "en";
 
 const address = (o: Order) => {
   const a = o.shippingAddress;
@@ -16,9 +16,10 @@ const address = (o: Order) => {
     .join("\n");
 };
 
-const asLocale = (l: string): Locale => (l === "ar" ? "ar" : "en");
+// Orders keep a locale column, but the site is English only.
+const asLocale = (_l: string): Locale => "en";
 
-/** Confirmation to the customer (their language) and a notification to the boutique (English). */
+/** Confirmation to the customer  and a notification to the boutique (English). */
 export async function sendOrderEmails(order: Order, items: OrderItem[]) {
   const cfg = emailConfig();
   const locale = asLocale(order.locale);
@@ -40,7 +41,7 @@ export async function sendOrderEmails(order: Order, items: OrderItem[]) {
       to: order.email,
       replyTo: cfg.boutique || undefined,
       subject: t("orderSubject", { ref: order.ref }),
-      html: emailHtml({ dir: locale === "ar" ? "rtl" : "ltr", title, intro, rows, footer: t("orderFooter") }),
+      html: emailHtml({ title, intro, rows, footer: t("orderFooter") }),
       text: emailText(title, intro, rows, t("orderFooter")),
     });
   }
@@ -61,7 +62,7 @@ export async function sendOrderEmails(order: Order, items: OrderItem[]) {
       to: cfg.boutique,
       replyTo: order.email ?? undefined,
       subject: title,
-      html: emailHtml({ dir: "ltr", title, intro, rows }),
+      html: emailHtml({ title, intro, rows }),
       text: emailText(title, intro, rows),
     });
   }
@@ -89,7 +90,7 @@ export async function sendShippedEmail(order: Order) {
         to: order.email,
         replyTo: cfg.boutique || undefined,
         subject: t("shippedSubject", { ref: order.ref }),
-        html: emailHtml({ dir: locale === "ar" ? "rtl" : "ltr", title, intro, rows }),
+        html: emailHtml({ title, intro, rows }),
         text: emailText(title, intro, rows),
       },
     ],

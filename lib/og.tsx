@@ -4,7 +4,7 @@ export const ogSize = { width: 1200, height: 630 };
 
 type Props = { eyebrow: string; title: string; meta?: string };
 
-/** Shared 1200x630 Open Graph card. Latin text only (the default OG font has no Arabic). */
+/** Shared 1200x630 Open Graph card. */
 export function ogCard({ eyebrow, title, meta }: Props) {
   return new ImageResponse(
     (

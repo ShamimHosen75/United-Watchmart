@@ -117,7 +117,7 @@ export function Preloader() {
           <span className="mt-6 block h-px w-full bg-hairline">
             <span
               ref={bar}
-              className="block h-full w-full origin-[0%_50%] scale-x-0 bg-gold rtl:origin-[100%_50%]"
+              className="block h-full w-full origin-[0%_50%] scale-x-0 bg-gold"
             />
           </span>
         </div>

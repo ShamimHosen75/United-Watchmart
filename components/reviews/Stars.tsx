@@ -6,7 +6,7 @@ const STAR = "M10 1.6l2.47 5.3 5.8.68-4.28 3.97 1.13 5.73L10 14.4l-5.12 2.88 1.1
 export function Stars({ rating, label, className = "", size = "sm" }: Props) {
   const px = size === "md" ? "size-5" : "size-3.5";
   return (
-    <span role="img" aria-label={label} className={`inline-flex items-center gap-0.5 ${className}`} dir="ltr">
+    <span role="img" aria-label={label} className={`inline-flex items-center gap-0.5 ${className}`}>
       {[0, 1, 2, 3, 4].map((i) => {
         const fill = Math.max(0, Math.min(1, rating - i));
         return (
