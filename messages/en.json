@@ -331,5 +331,19 @@
     "notFoundBody": "We could not find this order. If you were charged, please contact the boutique.",
     "items": "Items",
     "total": "Total"
+  },
+  "reviews": {
+    "label": "Client voices",
+    "title": "Worn every day. Kept for life.",
+    "body": "What owners tell us after living with their watch, from first viewing to years on the wrist.",
+    "rated": "Rated {rating} out of 5",
+    "basedOn": "{count, plural, one {Based on # review} other {Based on # reviews}}",
+    "outOf": "out of 5",
+    "verified": "Verified purchase",
+    "watchTitle": "What owners say",
+    "starsShort": "{count, plural, one {# star} other {# stars}}",
+    "empty": "No reviews yet for the {name}. Be among the first to wear it.",
+    "cta": "Try it on in person",
+    "reviewsLink": "{count, plural, one {# review} other {# reviews}}"
   }
 }

@@ -1,4 +1,5 @@
-import { boolean, index, integer, jsonb, pgEnum, pgTable, serial, text, timestamp, uuid } from "drizzle-orm/pg-core";
+import { sql } from "drizzle-orm";
+import { boolean, check, index, integer, jsonb, pgEnum, pgTable, serial, text, timestamp, uuid } from "drizzle-orm/pg-core";
 
 export const orderStatus = pgEnum("order_status", [
   "pending", // stock held, waiting for payment
@@ -95,3 +96,38 @@ export const orderEvents = pgTable(
 export type Order = typeof orders.$inferSelect;
 export type OrderItem = typeof orderItems.$inferSelect;
 export type OrderEvent = typeof orderEvents.$inferSelect;
+
+/**
+ * Customer reviews shown on the home page and watch pages.
+ * Only rows with status "approved" are shown; new submissions should start as "pending".
+ */
+export const reviewStatus = pgEnum("review_status", ["pending", "approved", "rejected"]);
+
+export const reviews = pgTable(
+  "reviews",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    /** Watch slug from data/products.ts. */
+    slug: text("slug").notNull(),
+    rating: integer("rating").notNull(),
+    title: text("title"),
+    titleAr: text("title_ar"),
+    body: text("body").notNull(),
+    /** Optional Arabic version of the review shown on /ar pages. */
+    bodyAr: text("body_ar"),
+    authorName: text("author_name").notNull(),
+    authorCity: text("author_city"),
+    verified: boolean("verified").notNull().default(false),
+    /** Shown in the home page testimonials. */
+    featured: boolean("featured").notNull().default(false),
+    status: reviewStatus("status").notNull().default("pending"),
+    createdAt: ts("created_at").notNull().defaultNow(),
+  },
+  (t) => [
+    index("reviews_slug_idx").on(t.slug),
+    index("reviews_status_idx").on(t.status),
+    check("reviews_rating_range", sql`${t.rating} between 1 and 5`),
+  ],
+);
+
+export type ReviewRow = typeof reviews.$inferSelect;

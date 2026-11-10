@@ -12,5 +12,9 @@ export const formatPrice = (amountUsd: number) => usd.format(amountUsd);
 /** Same as formatPrice, for amounts stored in cents (orders, Stripe). */
 export const formatCents = (cents: number) => usd.format(cents / 100);
 
-export const formatNumber = (value: number, locale: Locale) =>
-  new Intl.NumberFormat(intlLocale(locale)).format(value);
+/** Optional `decimals` forces that many digits after the point ("5.0"). */
+export const formatNumber = (value: number, locale: Locale, decimals?: number) =>
+  new Intl.NumberFormat(
+    intlLocale(locale),
+    decimals === undefined ? undefined : { minimumFractionDigits: decimals, maximumFractionDigits: decimals },
+  ).format(value);
