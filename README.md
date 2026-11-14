@@ -41,3 +41,9 @@ All settings are listed in [`.env.example`](.env.example).
 ## Deploying
 
 Designed for Vercel. Set the environment variables in the project settings, run `npm run db:migrate` against the production database once, and redeploy after changing any `NEXT_PUBLIC_` variable.
+
+## Admin dashboard (back office)
+
+`admin-dashboard/` is a separate Next.js app for running the shop: serialised inventory per branch, point of sale,
+customers, viewings, warranties, purchasing, transfers, repairs, reports, staff, settings and website content.
+It uses Supabase. See `admin-dashboard/README.md` to run it (`cd admin-dashboard && npm install && npm run dev`).
