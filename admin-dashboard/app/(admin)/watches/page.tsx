@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Plus, Watch } from "lucide-react";
-import { listCollections, listProducts, type ProductFilters } from "@/lib/data";
+import { listBrands, listCollections, listProducts, type ProductFilters } from "@/lib/data";
 import { Card, EmptyState, PageHeader } from "@/components/ui/card";
 import { ButtonLink } from "@/components/ui/button";
 import { Badge, StatusBadge } from "@/components/ui/badge";
@@ -18,9 +18,10 @@ export default async function WatchesPage({ searchParams }: PageProps<"/watches"
     q: param(sp.q),
     status: (param(sp.status) ?? "") as ProductFilters["status"],
     collection: param(sp.collection),
+    brand: param(sp.brand),
     strap: (param(sp.strap) ?? "") as ProductFilters["strap"],
   };
-  const [products, collections] = await Promise.all([listProducts(filters), listCollections()]);
+  const [products, collections, brands] = await Promise.all([listProducts(filters), listCollections(), listBrands()]);
 
   return (
     <>
@@ -31,7 +32,8 @@ export default async function WatchesPage({ searchParams }: PageProps<"/watches"
       />
       <Card>
         <FilterBar q={filters.q} placeholder="Search name, reference or SKU" resetHref="/watches">
-          <FilterSelect name="collection" label="Collection" value={filters.collection} options={collections.map((c) => ({ value: c.id, label: c.name }))} />
+          <FilterSelect name="brand" label="Brand" value={filters.brand} options={brands.map((b) => ({ value: b.id, label: b.name }))} />
+          <FilterSelect name="collection" label="Category" value={filters.collection} options={collections.map((c) => ({ value: c.id, label: c.name }))} />
           <FilterSelect name="strap" label="Strap" value={filters.strap} options={["bracelet", "leather", "rubber", "fabric", "other"].map((s) => ({ value: s, label: titleCase(s) }))} />
           <FilterSelect name="status" label="Status" value={filters.status} options={["active", "draft", "archived"].map((s) => ({ value: s, label: titleCase(s) }))} />
         </FilterBar>
@@ -42,7 +44,8 @@ export default async function WatchesPage({ searchParams }: PageProps<"/watches"
             <thead>
               <tr>
                 <Th>Watch</Th>
-                <Th>Collection</Th>
+                <Th>Brand</Th>
+                <Th>Category</Th>
                 <Th>Movement</Th>
                 <Th>Strap</Th>
                 <Th className="text-right">Price</Th>
@@ -69,6 +72,7 @@ export default async function WatchesPage({ searchParams }: PageProps<"/watches"
                       </span>
                     </Link>
                   </Td>
+                  <Td>{p.brand_name ?? <span className="text-muted">—</span>}</Td>
                   <Td className="text-muted">{p.collection_name ?? "—"}</Td>
                   <Td className="text-muted">{p.movement ? titleCase(p.movement) : "—"}</Td>
                   <Td className="text-muted">{p.strap ? titleCase(p.strap) : "—"}</Td>

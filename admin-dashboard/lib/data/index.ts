@@ -51,9 +51,9 @@ export async function listBranches(): Promise<Branch[]> {
 }
 
 export async function listBrands(): Promise<Brand[]> {
-  if (isDemoMode) return demo.brands;
+  if (isDemoMode) return [...demo.brands].sort((a, b) => (a.sort_order ?? 0) - (b.sort_order ?? 0) || a.name.localeCompare(b.name));
   const supabase = await createClient();
-  const { data, error } = await supabase.from("brands").select("id,name,slug").order("name");
+  const { data, error } = await supabase.from("brands").select("*").order("sort_order").order("name");
   if (error) throw error;
   return data as Brand[];
 }
@@ -61,7 +61,7 @@ export async function listBrands(): Promise<Brand[]> {
 export async function listCollections(): Promise<Collection[]> {
   if (isDemoMode) return demo.collections;
   const supabase = await createClient();
-  const { data, error } = await supabase.from("collections").select("id,name,slug").order("name");
+  const { data, error } = await supabase.from("collections").select("*").order("sort_order").order("name");
   if (error) throw error;
   return data as Collection[];
 }
@@ -74,6 +74,7 @@ export interface ProductFilters {
   q?: string;
   status?: ProductStatus | "";
   collection?: string;
+  brand?: string;
   strap?: StrapType | "";
 }
 
@@ -97,6 +98,7 @@ export async function listProducts(filters: ProductFilters = {}): Promise<Produc
     let query = supabase.from("products").select("*").order("name");
     if (filters.status) query = query.eq("status", filters.status);
     if (filters.collection) query = query.eq("collection_id", filters.collection);
+    if (filters.brand) query = query.eq("brand_id", filters.brand);
     if (filters.strap) query = query.eq("strap", filters.strap);
     if (filters.q) {
       const q = filters.q.replace(/[%,()]/g, " ");
@@ -119,6 +121,7 @@ export async function listProducts(filters: ProductFilters = {}): Promise<Produc
   return products
     .filter((p) => !filters.status || p.status === filters.status)
     .filter((p) => !filters.collection || p.collection_id === filters.collection)
+    .filter((p) => !filters.brand || p.brand_id === filters.brand)
     .filter((p) => !filters.strap || p.strap === filters.strap)
     .filter((p) => matchesQuery(filters.q, p.name, p.ref_number, p.sku))
     .map((p) => {
@@ -333,6 +336,7 @@ export interface DashboardData {
   lowStock: { id: string; name: string; ref_number: string; in_stock: number }[];
   upcomingViewings: (ViewingRequest & { product_name: string | null; branch_name: string | null })[];
   repairsDue: (Repair & { customer_name: string | null })[];
+  catalogue: { active: number; draft: number; lowStock: number; soldOut: number; ordersAllTime: number };
 }
 
 const DAY = 86_400_000;
@@ -352,8 +356,10 @@ export async function getDashboard(): Promise<DashboardData> {
   let repairs: Repair[];
   let branches: Branch[];
   let threshold = 1;
+  let ordersAllTime = 0;
 
   if (isDemoMode) {
+    ordersAllTime = demo.orders.filter((o) => inScope(scope, o.branch_id) && o.status !== "draft").length;
     orders = demo.orders.filter((o) => o.placed_at >= since);
     ({ products, collections, stock, customers, viewings, repairs, branches } = demo);
     items = demo.orderItems;
@@ -370,6 +376,9 @@ export async function getDashboard(): Promise<DashboardData> {
       supabase.from("repairs").select("*").not("status", "in", "(collected,cancelled)").order("promised_at"),
       supabase.from("branches").select("*"),
       supabase.from("store_settings").select("low_stock_threshold").eq("id", 1).maybeSingle(),
+      (scope === "all"
+        ? supabase.from("orders").select("id", { count: "exact", head: true }).neq("status", "draft")
+        : supabase.from("orders").select("id", { count: "exact", head: true }).neq("status", "draft").eq("branch_id", scope)),
     ]);
     const failed = res.find((r) => r.error);
     if (failed?.error) throw failed.error;
@@ -382,6 +391,7 @@ export async function getDashboard(): Promise<DashboardData> {
     repairs = res[6].data as Repair[];
     branches = res[7].data as Branch[];
     threshold = (res[8].data as { low_stock_threshold: number } | null)?.low_stock_threshold ?? 1;
+    ordersAllTime = res[9].count ?? 0;
     const ids = [...new Set([...orders.map((o) => o.customer_id), ...repairs.map((r) => r.customer_id)].filter(Boolean))] as string[];
     const { data: cust } = ids.length
       ? await supabase.from("customers").select("id,full_name").in("id", ids)
@@ -425,7 +435,16 @@ export async function getDashboard(): Promise<DashboardData> {
     .filter((p) => p.in_stock <= threshold)
     .sort((a, b) => a.in_stock - b.in_stock);
 
+  const activeStock = products.filter((p) => p.status === "active").map((p) => scopedStock.filter((s) => s.product_id === p.id).length);
+
   return {
+    catalogue: {
+      active: activeStock.length,
+      draft: products.filter((p) => p.status === "draft").length,
+      lowStock: activeStock.filter((n) => n > 0 && n <= threshold).length,
+      soldOut: activeStock.filter((n) => n === 0).length,
+      ordersAllTime,
+    },
     salesToday: sum(today),
     ordersToday: today.length,
     salesMonth: sum(month),

@@ -1,58 +1,85 @@
 import {
-  BarChart3, Boxes, Building2, CalendarClock, LayoutDashboard, Receipt, Settings, ShieldCheck, Truck, UserCog,
-  Users, Watch, Wrench, ArrowLeftRight, ClipboardList, Globe, Images, type LucideIcon,
+  ArrowLeftRight, BarChart3, Boxes, Building2, CalendarClock, ClipboardList, Images, LayoutDashboard, Map as MapIcon, Megaphone,
+  MessageSquare, PanelsTopLeft, Receipt, Settings, ShieldAlert, ShieldCheck, ShoppingCart, TicketPercent, Truck, UserCog,
+  UserRoundSearch, Users, Watch, Wrench, Hand, GalleryHorizontalEnd, FolderOpen, Award, type LucideIcon,
 } from "lucide-react";
 
 export interface NavItem {
   href: string;
   label: string;
   icon: LucideIcon;
-  /** Phase in which the module is built. */
-  phase: number;
 }
 export interface NavGroup {
   label: string;
   items: NavItem[];
 }
 
-export const CURRENT_PHASE = 6;
-
 export const nav: NavGroup[] = [
-  { label: "Overview", items: [{ href: "/dashboard", label: "Dashboard", icon: LayoutDashboard, phase: 1 }] },
   {
-    label: "Sales",
+    label: "Store",
     items: [
-      { href: "/orders", label: "Orders", icon: Receipt, phase: 2 },
-      { href: "/customers", label: "Customers", icon: Users, phase: 2 },
-      { href: "/viewings", label: "Viewings", icon: CalendarClock, phase: 2 },
-      { href: "/warranties", label: "Warranties", icon: ShieldCheck, phase: 2 },
+      { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
+      { href: "/watches", label: "Watches", icon: Watch },
+      { href: "/brands", label: "Watch brands", icon: Award },
+      { href: "/categories", label: "Categories", icon: FolderOpen },
+      { href: "/inventory", label: "Inventory", icon: Boxes },
+      { href: "/orders", label: "Orders", icon: Receipt },
+      { href: "/checkout-leads", label: "Checkout leads", icon: UserRoundSearch },
+      { href: "/risk-review", label: "Risk review", icon: ShieldAlert },
     ],
   },
   {
-    label: "Stock",
+    label: "Storefront",
     items: [
-      { href: "/watches", label: "Watches", icon: Watch, phase: 1 },
-      { href: "/inventory", label: "Inventory", icon: Boxes, phase: 1 },
-      { href: "/purchases", label: "Purchases", icon: ClipboardList, phase: 3 },
-      { href: "/suppliers", label: "Suppliers", icon: Truck, phase: 3 },
-      { href: "/transfers", label: "Transfers", icon: ArrowLeftRight, phase: 3 },
+      { href: "/slider", label: "Slider", icon: GalleryHorizontalEnd },
+      { href: "/website", label: "Content & hero", icon: PanelsTopLeft },
+      { href: "/media", label: "Media", icon: Images },
+      { href: "/reviews", label: "Reviews", icon: MessageSquare },
+      { href: "/try-on", label: "Wrist try-on", icon: Hand },
     ],
   },
-  { label: "Service", items: [{ href: "/repairs", label: "Repairs", icon: Wrench, phase: 4 }] },
   {
-    label: "Website",
+    label: "Sales & delivery",
     items: [
-      { href: "/website", label: "Pages", icon: Globe, phase: 6 },
-      { href: "/media", label: "Media", icon: Images, phase: 6 },
+      { href: "/coupons", label: "Coupons", icon: TicketPercent },
+      { href: "/settings/marketing", label: "Marketing", icon: Megaphone },
+      { href: "/shipping-zones", label: "Shipping zones", icon: MapIcon },
+      { href: "/shipping-methods", label: "Shipping methods", icon: Truck },
+    ],
+  },
+  {
+    label: "Clients & service",
+    items: [
+      { href: "/customers", label: "Customers", icon: Users },
+      { href: "/viewings", label: "Viewings", icon: CalendarClock },
+      { href: "/warranties", label: "Warranties", icon: ShieldCheck },
+      { href: "/repairs", label: "Repairs", icon: Wrench },
+    ],
+  },
+  {
+    label: "Supply",
+    items: [
+      { href: "/purchases", label: "Purchases", icon: ClipboardList },
+      { href: "/suppliers", label: "Suppliers", icon: ShoppingCart },
+      { href: "/transfers", label: "Transfers", icon: ArrowLeftRight },
     ],
   },
   {
     label: "Business",
     items: [
-      { href: "/reports", label: "Reports", icon: BarChart3, phase: 5 },
-      { href: "/branches", label: "Branches", icon: Building2, phase: 5 },
-      { href: "/users", label: "Users", icon: UserCog, phase: 5 },
-      { href: "/settings", label: "Settings", icon: Settings, phase: 5 },
+      { href: "/reports", label: "Reports", icon: BarChart3 },
+      { href: "/branches", label: "Branches", icon: Building2 },
+      { href: "/users", label: "Users", icon: UserCog },
+      { href: "/settings", label: "Settings", icon: Settings },
     ],
   },
 ];
+
+/** The nav item for a path: the longest href that matches, so /settings/marketing lights Marketing, not Settings. */
+export function activeHref(pathname: string): string | null {
+  let best: string | null = null;
+  for (const g of nav) for (const i of g.items) {
+    if ((pathname === i.href || pathname.startsWith(i.href + "/")) && (!best || i.href.length > best.length)) best = i.href;
+  }
+  return best;
+}

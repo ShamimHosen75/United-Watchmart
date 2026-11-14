@@ -5,13 +5,17 @@ insert into branches (id, code, name, city, address, phone, email, opening_hours
   ('00000000-0000-4000-8001-000000000001', 'GUL', 'Gulshan Flagship', 'Dhaka', 'Gulshan Avenue', '+880 1700 000001', 'gul@unitedwatchmart.test', 'Sat–Thu 11:00–21:00'),
   ('00000000-0000-4000-8001-000000000002', 'BAN', 'Banani Boutique', 'Dhaka', 'Road 11, Banani', '+880 1700 000002', 'ban@unitedwatchmart.test', 'Sat–Thu 11:00–20:00'),
   ('00000000-0000-4000-8001-000000000003', 'CTG', 'Chattogram Salon', 'Chattogram', 'GEC Circle', '+880 1700 000003', 'ctg@unitedwatchmart.test', 'Sat–Thu 12:00–20:00');
-insert into brands (id, name, slug) values
-  ('00000000-0000-4000-8003-000000000001', 'United WatchMart', 'united-watchmart');
-insert into collections (id, name, slug) values
-  ('00000000-0000-4000-8004-000000000001', 'Heritage', 'heritage'),
-  ('00000000-0000-4000-8004-000000000002', 'Chronograph', 'chronograph'),
-  ('00000000-0000-4000-8004-000000000003', 'Skeleton', 'skeleton'),
-  ('00000000-0000-4000-8004-000000000004', 'Tourbillon', 'tourbillon');
+insert into brands (id, name, slug, country, founded_year, description, sort_order, is_featured, is_active) values
+  ('00000000-0000-4000-8003-000000000001', 'United WatchMart', 'united-watchmart', 'Bangladesh', 2024, 'Our own house collection: automatic chronographs, skeletons and tourbillons.', 0, true, true),
+  ('00000000-0000-4000-8003-000000000002', 'Seiko', 'seiko', 'Japan', 1881, 'Japanese automatic and solar watches.', 10, true, true),
+  ('00000000-0000-4000-8003-000000000003', 'Citizen', 'citizen', 'Japan', 1918, 'Eco-Drive solar watches.', 20, false, true),
+  ('00000000-0000-4000-8003-000000000004', 'Tissot', 'tissot', 'Switzerland', 1853, 'Swiss watches for every day.', 30, false, true),
+  ('00000000-0000-4000-8003-000000000005', 'Orient', 'orient', 'Japan', 1950, 'Affordable in-house automatics.', 40, false, true);
+insert into collections (id, name, slug, description, sort_order, is_active) values
+  ('00000000-0000-4000-8004-000000000001', 'Heritage', 'heritage', 'Classic dress and everyday watches.', 10, true),
+  ('00000000-0000-4000-8004-000000000002', 'Chronograph', 'chronograph', 'Stopwatch complications for sport and racing.', 20, true),
+  ('00000000-0000-4000-8004-000000000003', 'Skeleton', 'skeleton', 'Open dials that show the movement.', 30, true),
+  ('00000000-0000-4000-8004-000000000004', 'Tourbillon', 'tourbillon', 'Haute horlogerie with a rotating escapement.', 40, true);
 insert into products (id, sku, ref_number, slug, name, tagline, brand_id, collection_id, status, is_published, case_mm, case_material, bezel, dial, movement, calibre, power_reserve_h, water_resistance_m, strap, strap_detail, gender, cost_price, price, warranty_months) values
   ('00000000-0000-4000-8005-000000000001', 'UW-0001', 'UW-H42-NV', 'heritage-42', 'Heritage 42', '42 mm stainless steel with navy sunburst dial', '00000000-0000-4000-8003-000000000001', '00000000-0000-4000-8004-000000000001', 'active', true, 42, 'Stainless steel', '18k gold', 'Navy sunburst', 'automatic', 'Automatic 28,800 vph', 72, 100, 'bracelet', 'Steel and gold bracelet', 'men', 2842, 4900, 24),
   ('00000000-0000-4000-8005-000000000002', 'UW-0002', 'UW-OGT-BK', 'octane-gt', 'Octane GT', '43 mm stainless steel with black waffle dial', '00000000-0000-4000-8003-000000000001', '00000000-0000-4000-8004-000000000002', 'active', true, 43, 'Stainless steel', 'Rose-gold octagonal', 'Black waffle', 'automatic', 'Automatic chronograph', 60, 150, 'rubber', 'Black rubber strap', 'men', 3596, 6200, 24),
@@ -197,6 +201,40 @@ insert into purchase_items (purchase_id, product_id, quantity, received_qty, uni
   ('00000000-0000-4000-8012-000000000002', '00000000-0000-4000-8005-000000000009', 1, 0, 16762),
   ('00000000-0000-4000-8012-000000000002', '00000000-0000-4000-8005-000000000008', 2, 0, 14210),
   ('00000000-0000-4000-8012-000000000003', '00000000-0000-4000-8005-000000000002', 3, 0, 3596);
+insert into checkout_leads (id, name, email, phone, city, items, cart_total, step, status, notes, created_at) values
+  ('00000000-0000-4000-8020-000000000001', 'Farhan Kabir', 'farhan.k@example.com', '+880 1711 220011', 'Dhaka', 'Octane GT', 6200, 'payment', 'new', null, now() - interval '95 minutes'),
+  ('00000000-0000-4000-8020-000000000002', 'Mehjabin Akter', 'mehjabin@example.com', '+880 1811 220012', 'Sylhet', 'Heritage 42
+Heritage 42', 9800, 'shipping', 'contacted', 'Asked about delivery to Sylhet. Sent courier options on WhatsApp.', now() - interval '1200 minutes'),
+  ('00000000-0000-4000-8020-000000000003', 'Rakib Hasan', null, '+880 1911 220013', 'Chattogram', 'Verdant', 9800, 'details', 'new', null, now() - interval '1800 minutes'),
+  ('00000000-0000-4000-8020-000000000004', 'Tahsin Rahman', 'tahsin.r@example.com', null, 'Dhaka', 'Midnight Chrono', 7400, 'payment', 'recovered', 'Completed in store at Gulshan.', now() - interval '5760 minutes'),
+  ('00000000-0000-4000-8020-000000000005', 'Ishrat Jahan', 'ishrat@example.com', '+880 1611 220015', 'Khulna', 'Aurelian', 8900, 'cart', 'lost', 'Chose another watch.', now() - interval '12960 minutes');
+insert into site_slides (id, title, eyebrow, subtitle, image_url, cta_label, cta_href, sort_order, is_active) values
+  ('00000000-0000-4000-8021-000000000001', 'Time, beautifully engineered', 'New season', 'Automatic chronographs and tourbillons, serviced and guaranteed for two years.', '/images/hero-1.jpg', 'Explore the collection', '/watches', 0, true),
+  ('00000000-0000-4000-8021-000000000002', 'The Maestro Tourbillon', 'Haute horlogerie', 'A flying tourbillon in rose gold. Book a private viewing.', '/images/hero-2.jpg', 'Request a viewing', '/watches/maestro-tourbillon', 1, true),
+  ('00000000-0000-4000-8021-000000000003', 'Eid gifting', 'Seasonal', 'Complimentary engraving on every watch this month.', '/images/hero-3.jpg', 'Shop gifts', '/watches', 2, false);
+insert into reviews (id, slug, rating, title, body, author_name, author_city, verified, featured, status, created_at) values
+  ('00000000-0000-4000-8022-000000000001', 'heritage-42', 5, 'The one I reach for every morning', 'I bought the Heritage 42 for my fortieth and haven''t taken it off since. The navy dial changes colour all day, and the gold bezel is warm without being loud.', 'Omar Haddad', 'Dubai', true, true, 'approved', now() - interval '57600 minutes'),
+  ('00000000-0000-4000-8022-000000000002', 'octane-gt', 5, 'Sporty without shouting', 'The rubber strap is the most comfortable I''ve worn and the chronograph pushers feel crisp.', 'Daniel Okafor', 'Lagos', true, true, 'approved', now() - interval '46080 minutes'),
+  ('00000000-0000-4000-8022-000000000003', 'maestro-tourbillon', 5, 'Worth the wait', 'Watching the tourbillon turn never gets old. The private viewing made the whole purchase feel special.', 'Layla Mansour', 'Doha', true, false, 'approved', now() - interval '30240 minutes'),
+  ('00000000-0000-4000-8022-000000000004', 'verdant', 4, 'Beautiful green', 'Lovely dial and finishing. The bracelet needed one extra link removed, which the boutique did for free.', 'Sabbir Ahmed', 'Dhaka', false, false, 'pending', now() - interval '1560 minutes'),
+  ('00000000-0000-4000-8022-000000000005', 'aurelian', 3, 'Good, but heavy', 'The open gear train is stunning, but it is heavier than I expected for daily wear.', 'Nusrat Jahan', 'Chattogram', false, false, 'pending', now() - interval '300 minutes');
+insert into tryon_settings (id, product_id, overlay_url, case_mm, lug_to_lug_mm, scale_pct, notes, is_enabled) values
+  ('00000000-0000-4000-8023-000000000001', '00000000-0000-4000-8005-000000000001', '/tryon/heritage-42.png', 42, 49, 100, null, true),
+  ('00000000-0000-4000-8023-000000000002', '00000000-0000-4000-8005-000000000002', '/tryon/octane-gt.png', 43, 50, 100, null, true),
+  ('00000000-0000-4000-8023-000000000003', '00000000-0000-4000-8005-000000000008', '/tryon/maestro-tourbillon.png', 44, 52, 98, 'Photo needs a cleaner cut-out around the crown.', false);
+insert into coupons (id, code, description, discount_type, value, min_order, max_uses, used_count, brand_id, starts_on, ends_on, is_active) values
+  ('00000000-0000-4000-8024-000000000001', 'WELCOME5', 'First online order', 'percent', 5, 1000, null, 14, null, null, null, true),
+  ('00000000-0000-4000-8024-000000000002', 'EID2026', 'Eid campaign', 'fixed', 250, 5000, 100, 37, null, null, '2026-12-31', true),
+  ('00000000-0000-4000-8024-000000000003', 'SHIPFREE', 'Free delivery anywhere', 'free_shipping', 0, 0, 50, 50, null, null, null, false);
+insert into shipping_zones (id, name, regions, sort_order, is_active) values
+  ('00000000-0000-4000-8025-000000000001', 'Dhaka city', array['Dhaka']::text[], 0, true),
+  ('00000000-0000-4000-8025-000000000002', 'Rest of Bangladesh', array['Chattogram','Sylhet','Khulna','Rajshahi','Barishal','Rangpur','Mymensingh']::text[], 1, true),
+  ('00000000-0000-4000-8025-000000000003', 'International', array['United Arab Emirates','Saudi Arabia','United Kingdom']::text[], 2, false);
+insert into shipping_methods (id, zone_id, name, carrier, rate, free_over, min_days, max_days, is_insured, is_active) values
+  ('00000000-0000-4000-8026-000000000001', '00000000-0000-4000-8025-000000000001', 'Same-day insured courier', 'Boutique courier', 15, 3000, 0, 1, true, true),
+  ('00000000-0000-4000-8026-000000000002', '00000000-0000-4000-8025-000000000001', 'Collect in boutique', null, 0, null, 0, 0, true, true),
+  ('00000000-0000-4000-8026-000000000003', '00000000-0000-4000-8025-000000000002', 'Insured courier', 'Sundarban Courier', 25, 5000, 2, 4, true, true),
+  ('00000000-0000-4000-8026-000000000004', '00000000-0000-4000-8025-000000000003', 'DHL Express', 'DHL', 90, null, 3, 6, true, true);
 
 -- Keep generated document numbers clear of the seeded ones
 select setval('order_number_seq', 2000);

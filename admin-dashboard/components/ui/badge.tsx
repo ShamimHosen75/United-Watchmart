@@ -25,6 +25,7 @@ const statusTones: Record<string, Tone> = {
   active: "success", draft: "neutral", archived: "neutral",
   pending: "warning", balance_due: "warning", ordered: "info", partially_received: "accent", expired: "neutral", void: "danger", paid: "info", completed: "success", cancelled: "neutral", refunded: "danger",
   new: "accent", confirmed: "info", no_show: "danger",
+  contacted: "info", recovered: "success", lost: "neutral", approved: "success", rejected: "danger", held: "warning",
   received: "neutral", diagnosing: "info", awaiting_approval: "warning", in_progress: "info", ready: "success", collected: "neutral",
 };
 

@@ -15,7 +15,7 @@ With no Supabase keys the app runs in **demo mode**: sign in with anything, data
 ## Connect Supabase
 
 1. Create a Supabase project.
-2. In the SQL editor run, in order: `supabase/migrations/0001_core_schema.sql`, `0002_security.sql`, `0003_stock_audit.sql`, `0004_sales.sql`, `0005_supply.sql`, `0006_service.sql`, `0007_business.sql`, `0008_site_content.sql`, then optionally `supabase/seed.sql` for sample data.
+2. In the SQL editor run, in order: `supabase/migrations/0001_core_schema.sql`, `0002_security.sql`, `0003_stock_audit.sql`, `0004_sales.sql`, `0005_supply.sql`, `0006_service.sql`, `0007_business.sql`, `0008_site_content.sql`, `0009_store_modules.sql`, then optionally `supabase/seed.sql` for sample data.
    (Or with the Supabase CLI: `supabase link` then `supabase db push`.)
 3. Authentication → Sign In / Providers: keep Email on. Turn **off** "Allow new users to sign up" after you have created your own account, then invite staff from **Users** in the admin. In URL Configuration add your site address to the redirect URLs.
 4. Copy `.env.example` to `.env.local` and fill in the project URL and publishable (anon) key from Project Settings → API.
@@ -25,6 +25,7 @@ With no Supabase keys the app runs in **demo mode**: sign in with anything, data
 
 | Variable | What it turns on |
 |---|---|
+| `NEXT_PUBLIC_STORE_URL` | Address for the sidebar's "Back to store" link. Falls back to the website set in Settings → Store. |
 | `NEXT_PUBLIC_CURRENCY` | Currency for every amount, e.g. `BDT`. Defaults to `USD`. |
 | `SUPABASE_SERVICE_ROLE_KEY` | Invite emails from Users, and new-viewing alerts. Server only, never `NEXT_PUBLIC_`. |
 | `RESEND_API_KEY`, `RESEND_FROM` | Email campaigns and alerts through Resend, e.g. `United WatchMart <hello@yourdomain.com>`. |
@@ -71,6 +72,8 @@ see `docs/website-content.md` for the code to add to the website.
 4. **Workshop** (done): repair board and list with overdue flags, intake with warranty check by serial, status steps from diagnosis to client approval to hand-back, costs and payment at collection, notes and history, WhatsApp and email messages to the client, printable repair ticket with workshop tag.
 5. **Business** (done): reports (sales and margin by branch, staff, brand, collection and channel; stock value and age; workshop) with CSV export, branches, users with invites and approval, settings for account, store and invoice, catalogue, notifications, marketing campaigns by email or WhatsApp, and integrations.
 6. **Website content** (done): page editor for every page of the public site (sections in English and Arabic, reorder, show or hide, search and sharing fields), media library with uploads, draft, preview, publish and roll back, and a public content API with instant refresh on publish.
+
+7. **Store modules** (done): sidebar regrouped into Store, Storefront, Sales & delivery, Clients & service, Supply and Business. New: watch brands (with a brand filter and column on Watches), categories, checkout leads (abandoned checkouts to follow up), risk review for remote orders, home slider, review moderation (same `reviews` table the website reads), wrist try-on set-up per watch, coupons, shipping zones and shipping methods. Dashboard shows active, draft, low-stock and sold-out watches and all-time orders. Simple modules are described in `lib/resources.ts` and share one list, form and data layer (`app/(admin)/[resource]`, `lib/data/resources.ts`).
 
 ## Website viewing requests
 

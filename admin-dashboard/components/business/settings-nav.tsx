@@ -2,13 +2,12 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Bell, Megaphone, Plug, Store, Tags, UserRound } from "lucide-react";
+import { Bell, Megaphone, Plug, Store, UserRound } from "lucide-react";
 import { cn } from "@/lib/cn";
 
 const items = [
   { href: "/settings/account", label: "Account", icon: UserRound },
   { href: "/settings/store", label: "Store and invoice", icon: Store },
-  { href: "/settings/catalogue", label: "Catalogue", icon: Tags },
   { href: "/settings/notifications", label: "Notifications", icon: Bell },
   { href: "/settings/marketing", label: "Marketing", icon: Megaphone },
   { href: "/settings/integrations", label: "Integrations", icon: Plug },

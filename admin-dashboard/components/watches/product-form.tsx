@@ -55,7 +55,7 @@ export function ProductForm({ product, brands, collections, defaultWarranty = 24
                 {brands.map((b) => <option key={b.id} value={b.id}>{b.name}</option>)}
               </Select>
             </Field>
-            <Field label="Collection">
+            <Field label="Category">
               <Select name="collection_id" defaultValue={v("collection_id")}>
                 <option value="">None</option>
                 {collections.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}

@@ -36,7 +36,7 @@ export default async function WatchPage({ params }: PageProps<"/watches/[id]">) 
     ["Water resistance", product.water_resistance_m ? `${product.water_resistance_m} m` : null],
     ["Strap", [product.strap && titleCase(product.strap), product.strap_detail].filter(Boolean).join(" · ") || null],
     ["Brand", brands.find((b) => b.id === product.brand_id)?.name ?? null],
-    ["Collection", collections.find((c) => c.id === product.collection_id)?.name ?? null],
+    ["Category", collections.find((c) => c.id === product.collection_id)?.name ?? null],
     ["Warranty", `${product.warranty_months} months`],
   ];
 

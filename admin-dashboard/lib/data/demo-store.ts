@@ -4,7 +4,7 @@ import type {
   Branch, Brand, Collection, Customer, Order, OrderItem, Payment, Product, Profile, Repair, StockItem, StockMovement,
   ViewingRequest, Warranty, RepairEvent, Supplier, Purchase, PurchaseItem, Transfer, StoreSettings, StaffInvite, Campaign,
 } from "@/lib/types";
-import type { SiteMedia } from "@/lib/types";
+import type { ResourceRecord, RiskReview, SiteMedia } from "@/lib/types";
 import { PAGES, type PageContent } from "@/lib/cms/schema";
 
 const ago = (m: number) => new Date(Date.now() - m * 60_000).toISOString();
@@ -37,6 +37,9 @@ export interface DemoDb {
   sitePages: DemoSitePage[];
   siteVersions: { id: number; slug: string; content: PageContent; published_at: string; published_by: string | null }[];
   media: SiteMedia[];
+  /** Rows of the simple modules in lib/resources.ts, by table name (brands and collections live above). */
+  records: Record<string, ResourceRecord[]>;
+  riskReviews: RiskReview[];
 }
 
 export interface DemoSitePage {
@@ -47,6 +50,9 @@ export interface DemoSitePage {
   published_at: string | null;
   draft_updated_at: string | null;
 }
+
+const withTimes = (rows: readonly ({ id: string } & Record<string, unknown>)[]): ResourceRecord[] =>
+  rows.map((r, i) => ({ ...structuredClone(r), created_at: ago(60 * 24 * (30 - i)), updated_at: ago(60 * 24 * (30 - i)) }));
 
 function build(): DemoDb {
   const stock: StockItem[] = seed.stockSeeds.map((s) => ({
@@ -172,9 +178,19 @@ function build(): DemoDb {
     sitePages: PAGES.map((p) => ({ slug: p.slug, title: p.title, draft: null, published: null, published_at: null, draft_updated_at: null })),
     siteVersions: [],
     media: [],
+    records: {
+      checkout_leads: seed.checkoutLeadSeeds.map(({ created_ago, ...r }) => ({ ...r, created_at: ago(created_ago), updated_at: ago(created_ago) })),
+      site_slides: withTimes(seed.slideSeeds),
+      reviews: seed.reviewSeeds.map(({ created_ago, ...r }) => ({ ...r, created_at: ago(created_ago) })),
+      tryon_settings: withTimes(seed.tryonSeeds),
+      coupons: withTimes(seed.couponSeeds),
+      shipping_zones: withTimes(seed.shippingZoneSeeds),
+      shipping_methods: withTimes(seed.shippingMethodSeeds),
+    },
+    riskReviews: [],
   };
 }
 
 const g = globalThis as unknown as { __watchmartDemo?: DemoDb };
 /** In-memory database for demo mode. Changes last until the server restarts. */
-export const demo: DemoDb = (g.__watchmartDemo?.sitePages ? g.__watchmartDemo : (g.__watchmartDemo = build()));
+export const demo: DemoDb = (g.__watchmartDemo?.records ? g.__watchmartDemo : (g.__watchmartDemo = build()));

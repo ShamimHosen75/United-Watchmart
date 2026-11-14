@@ -31,6 +31,21 @@ export default async function DashboardPage() {
         }
       />
 
+      <div className="mb-4 grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-5">
+        {[
+          { label: "Active products", value: d.catalogue.active, href: "/watches?status=active" },
+          { label: "Draft products", value: d.catalogue.draft, href: "/watches?status=draft" },
+          { label: "Low-stock SKUs", value: d.catalogue.lowStock, href: "/watches?status=active", tone: d.catalogue.lowStock ? "text-warning" : "" },
+          { label: "Sold-out SKUs", value: d.catalogue.soldOut, href: "/watches?status=active", tone: d.catalogue.soldOut ? "text-danger" : "" },
+          { label: "Orders (all time)", value: d.catalogue.ordersAllTime, href: "/orders" },
+        ].map((k) => (
+          <Link key={k.label} href={k.href} className="rounded-xl border border-border bg-surface p-5 transition-colors hover:border-accent/40">
+            <p className="text-[11px] font-medium tracking-[0.1em] text-muted uppercase">{k.label}</p>
+            <p className={`mt-2 text-3xl font-semibold tracking-tight ${k.tone ?? ""}`}>{k.value.toLocaleString()}</p>
+          </Link>
+        ))}
+      </div>
+
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <StatCard icon={DollarSign} label="Sales today" value={money(d.salesToday)} sub={`${d.ordersToday} order${d.ordersToday === 1 ? "" : "s"}`} />
         <StatCard

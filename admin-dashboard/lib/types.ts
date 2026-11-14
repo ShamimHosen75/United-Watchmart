@@ -49,12 +49,36 @@ export interface Brand {
   id: string;
   name: string;
   slug: string;
+  country?: string | null;
+  founded_year?: number | null;
+  website?: string | null;
+  logo_url?: string | null;
+  description?: string | null;
+  sort_order?: number;
+  is_featured?: boolean;
+  is_active?: boolean;
 }
 
 export interface Collection {
   id: string;
   name: string;
   slug: string;
+  description?: string | null;
+  image_url?: string | null;
+  sort_order?: number;
+  is_active?: boolean;
+}
+
+/** A row of one of the simple modules in lib/resources.ts. */
+export type ResourceRecord = { id: string } & Record<string, unknown>;
+
+export type RiskStatus = "pending" | "approved" | "held" | "cancelled";
+export interface RiskReview {
+  order_id: string;
+  status: RiskStatus;
+  note: string | null;
+  reviewed_by: string | null;
+  reviewed_at: string | null;
 }
 
 export interface Product {

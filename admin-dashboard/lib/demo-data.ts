@@ -35,15 +35,25 @@ export const staff: Profile[] = [
   { id: uuid(2, 5), full_name: "Sadia Islam", email: "sadia@unitedwatchmart.test", phone: null, role: "sales", branch_id: null, is_active: false },
 ];
 
+const brand = (n: number, name: string, slug: string, country: string, founded: number, sort: number, featured: boolean, description: string): Brand => ({
+  id: uuid(3, n), name, slug, country, founded_year: founded, website: null, logo_url: null, description, sort_order: sort, is_featured: featured, is_active: true,
+});
 export const brands: Brand[] = [
-  { id: uuid(3, 1), name: "United WatchMart", slug: "united-watchmart" },
+  brand(1, "United WatchMart", "united-watchmart", "Bangladesh", 2024, 0, true, "Our own house collection: automatic chronographs, skeletons and tourbillons."),
+  brand(2, "Seiko", "seiko", "Japan", 1881, 10, true, "Japanese automatic and solar watches."),
+  brand(3, "Citizen", "citizen", "Japan", 1918, 20, false, "Eco-Drive solar watches."),
+  brand(4, "Tissot", "tissot", "Switzerland", 1853, 30, false, "Swiss watches for every day."),
+  brand(5, "Orient", "orient", "Japan", 1950, 40, false, "Affordable in-house automatics."),
 ];
 
+const collection = (n: number, name: string, slug: string, description: string): Collection => ({
+  id: uuid(4, n), name, slug, description, image_url: null, sort_order: n * 10, is_active: true,
+});
 export const collections: Collection[] = [
-  { id: uuid(4, 1), name: "Heritage", slug: "heritage" },
-  { id: uuid(4, 2), name: "Chronograph", slug: "chronograph" },
-  { id: uuid(4, 3), name: "Skeleton", slug: "skeleton" },
-  { id: uuid(4, 4), name: "Tourbillon", slug: "tourbillon" },
+  collection(1, "Heritage", "heritage", "Classic dress and everyday watches."),
+  collection(2, "Chronograph", "chronograph", "Stopwatch complications for sport and racing."),
+  collection(3, "Skeleton", "skeleton", "Open dials that show the movement."),
+  collection(4, "Tourbillon", "tourbillon", "Haute horlogerie with a rotating escapement."),
 ];
 
 type Seed = [
@@ -182,4 +192,56 @@ export const purchaseSeeds = [
     lines: [{ product: 8, qty: 1, cost: 16762, received: 0 }, { product: 7, qty: 2, cost: 14210, received: 0 }] },
   { id: uuid(12, 3), number: "PO-000103", supplier: 1, branch: 2, status: "draft" as const, ordered_days_ago: null, expected_in_days: null, shipping: 150,
     lines: [{ product: 1, qty: 3, cost: 3596, received: 0 }] },
+];
+
+/* ------------------------------------------------------------------ */
+/* Storefront, sales and delivery modules                              */
+/* ------------------------------------------------------------------ */
+
+export const checkoutLeadSeeds = [
+  { id: uuid(20, 1), name: "Farhan Kabir", email: "farhan.k@example.com", phone: "+880 1711 220011", city: "Dhaka", items: "Octane GT", cart_total: 6200, step: "payment", status: "new", notes: null, created_ago: 95 },
+  { id: uuid(20, 2), name: "Mehjabin Akter", email: "mehjabin@example.com", phone: "+880 1811 220012", city: "Sylhet", items: "Heritage 42\nHeritage 42", cart_total: 9800, step: "shipping", status: "contacted", notes: "Asked about delivery to Sylhet. Sent courier options on WhatsApp.", created_ago: 60 * 20 },
+  { id: uuid(20, 3), name: "Rakib Hasan", email: null, phone: "+880 1911 220013", city: "Chattogram", items: "Verdant", cart_total: 9800, step: "details", status: "new", notes: null, created_ago: 60 * 30 },
+  { id: uuid(20, 4), name: "Tahsin Rahman", email: "tahsin.r@example.com", phone: null, city: "Dhaka", items: "Midnight Chrono", cart_total: 7400, step: "payment", status: "recovered", notes: "Completed in store at Gulshan.", created_ago: 60 * 24 * 4 },
+  { id: uuid(20, 5), name: "Ishrat Jahan", email: "ishrat@example.com", phone: "+880 1611 220015", city: "Khulna", items: "Aurelian", cart_total: 8900, step: "cart", status: "lost", notes: "Chose another watch.", created_ago: 60 * 24 * 9 },
+];
+
+export const slideSeeds = [
+  { id: uuid(21, 1), title: "Time, beautifully engineered", eyebrow: "New season", subtitle: "Automatic chronographs and tourbillons, serviced and guaranteed for two years.", image_url: "/images/hero-1.jpg", cta_label: "Explore the collection", cta_href: "/watches", sort_order: 0, is_active: true },
+  { id: uuid(21, 2), title: "The Maestro Tourbillon", eyebrow: "Haute horlogerie", subtitle: "A flying tourbillon in rose gold. Book a private viewing.", image_url: "/images/hero-2.jpg", cta_label: "Request a viewing", cta_href: "/watches/maestro-tourbillon", sort_order: 1, is_active: true },
+  { id: uuid(21, 3), title: "Eid gifting", eyebrow: "Seasonal", subtitle: "Complimentary engraving on every watch this month.", image_url: "/images/hero-3.jpg", cta_label: "Shop gifts", cta_href: "/watches", sort_order: 2, is_active: false },
+];
+
+/** Same sample reviews as the website's data/reviews.ts (a selection). */
+export const reviewSeeds = [
+  { id: uuid(22, 1), slug: "heritage-42", rating: 5, title: "The one I reach for every morning", body: "I bought the Heritage 42 for my fortieth and haven't taken it off since. The navy dial changes colour all day, and the gold bezel is warm without being loud.", author_name: "Omar Haddad", author_city: "Dubai", verified: true, featured: true, status: "approved", created_ago: 60 * 24 * 40 },
+  { id: uuid(22, 2), slug: "octane-gt", rating: 5, title: "Sporty without shouting", body: "The rubber strap is the most comfortable I've worn and the chronograph pushers feel crisp.", author_name: "Daniel Okafor", author_city: "Lagos", verified: true, featured: true, status: "approved", created_ago: 60 * 24 * 32 },
+  { id: uuid(22, 3), slug: "maestro-tourbillon", rating: 5, title: "Worth the wait", body: "Watching the tourbillon turn never gets old. The private viewing made the whole purchase feel special.", author_name: "Layla Mansour", author_city: "Doha", verified: true, featured: false, status: "approved", created_ago: 60 * 24 * 21 },
+  { id: uuid(22, 4), slug: "verdant", rating: 4, title: "Beautiful green", body: "Lovely dial and finishing. The bracelet needed one extra link removed, which the boutique did for free.", author_name: "Sabbir Ahmed", author_city: "Dhaka", verified: false, featured: false, status: "pending", created_ago: 60 * 26 },
+  { id: uuid(22, 5), slug: "aurelian", rating: 3, title: "Good, but heavy", body: "The open gear train is stunning, but it is heavier than I expected for daily wear.", author_name: "Nusrat Jahan", author_city: "Chattogram", verified: false, featured: false, status: "pending", created_ago: 60 * 5 },
+];
+
+export const tryonSeeds = [
+  { id: uuid(23, 1), product_id: products[0].id, overlay_url: "/tryon/heritage-42.png", case_mm: 42, lug_to_lug_mm: 49, scale_pct: 100, notes: null, is_enabled: true },
+  { id: uuid(23, 2), product_id: products[1].id, overlay_url: "/tryon/octane-gt.png", case_mm: 43, lug_to_lug_mm: 50, scale_pct: 100, notes: null, is_enabled: true },
+  { id: uuid(23, 3), product_id: products[7].id, overlay_url: "/tryon/maestro-tourbillon.png", case_mm: 44, lug_to_lug_mm: 52, scale_pct: 98, notes: "Photo needs a cleaner cut-out around the crown.", is_enabled: false },
+];
+
+export const couponSeeds = [
+  { id: uuid(24, 1), code: "WELCOME5", description: "First online order", discount_type: "percent", value: 5, min_order: 1000, max_uses: null, used_count: 14, brand_id: null, starts_on: null, ends_on: null, is_active: true },
+  { id: uuid(24, 2), code: "EID2026", description: "Eid campaign", discount_type: "fixed", value: 250, min_order: 5000, max_uses: 100, used_count: 37, brand_id: null, starts_on: null, ends_on: "2026-12-31", is_active: true },
+  { id: uuid(24, 3), code: "SHIPFREE", description: "Free delivery anywhere", discount_type: "free_shipping", value: 0, min_order: 0, max_uses: 50, used_count: 50, brand_id: null, starts_on: null, ends_on: null, is_active: false },
+];
+
+export const shippingZoneSeeds = [
+  { id: uuid(25, 1), name: "Dhaka city", regions: ["Dhaka"], sort_order: 0, is_active: true },
+  { id: uuid(25, 2), name: "Rest of Bangladesh", regions: ["Chattogram", "Sylhet", "Khulna", "Rajshahi", "Barishal", "Rangpur", "Mymensingh"], sort_order: 1, is_active: true },
+  { id: uuid(25, 3), name: "International", regions: ["United Arab Emirates", "Saudi Arabia", "United Kingdom"], sort_order: 2, is_active: false },
+];
+
+export const shippingMethodSeeds = [
+  { id: uuid(26, 1), zone_id: shippingZoneSeeds[0].id, name: "Same-day insured courier", carrier: "Boutique courier", rate: 15, free_over: 3000, min_days: 0, max_days: 1, is_insured: true, is_active: true },
+  { id: uuid(26, 2), zone_id: shippingZoneSeeds[0].id, name: "Collect in boutique", carrier: null, rate: 0, free_over: null, min_days: 0, max_days: 0, is_insured: true, is_active: true },
+  { id: uuid(26, 3), zone_id: shippingZoneSeeds[1].id, name: "Insured courier", carrier: "Sundarban Courier", rate: 25, free_over: 5000, min_days: 2, max_days: 4, is_insured: true, is_active: true },
+  { id: uuid(26, 4), zone_id: shippingZoneSeeds[2].id, name: "DHL Express", carrier: "DHL", rate: 90, free_over: null, min_days: 3, max_days: 6, is_insured: true, is_active: true },
 ];

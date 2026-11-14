@@ -4,6 +4,7 @@ import { Topbar } from "@/components/layout/topbar";
 import { getBranchScope, getCurrentUser, listBranches } from "@/lib/data";
 import { isDemoMode } from "@/lib/env";
 import { signOut } from "@/app/actions";
+import { getSettings } from "@/lib/data/business";
 
 export default async function AdminLayout({ children }: LayoutProps<"/">) {
   const user = await getCurrentUser();
@@ -25,11 +26,12 @@ export default async function AdminLayout({ children }: LayoutProps<"/">) {
     );
   }
 
-  const [branches, scope] = await Promise.all([listBranches(), getBranchScope()]);
+  const [branches, scope, settings] = await Promise.all([listBranches(), getBranchScope(), getSettings()]);
+  const storeUrl = process.env.NEXT_PUBLIC_STORE_URL || settings.website_url || null;
 
   return (
     <div className="min-h-screen">
-      <Sidebar />
+      <Sidebar user={{ full_name: user.full_name, email: user.email, role: user.role }} storeUrl={storeUrl} />
       <div className="lg:pl-64">
         <Topbar user={user} branches={branches} scope={scope} />
         {isDemoMode && (
